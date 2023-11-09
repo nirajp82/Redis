@@ -42,6 +42,9 @@ Slots per Node = Total Slots / Total Nodes
 
 Slots per Node =  16384 (Total Slots)/ Total Nodes
 
+In Redis Cluster, the concept of "slots" is used to distribute keys across nodes. The number of keys that can be stored in each slot is not fixed; it can vary depending on the size of the dataset and the memory available on each node.  Redis itself doesn't enforce a strict limit on the number of keys within a slot. Instead, it relies on the available memory of each node. As long as there is available memory, a slot can hold multiple keys and their corresponding values.
+
+
 ## Logical Databases:
 Redis supports multiple logical databases within a single Redis server. Each database is identified by an index number (from 0 to 15 by default) and operates independently of others. You can switch between databases using the SELECT command. Logical databases are useful for separating different types of data or isolating data for different applications within the same Redis instance. Logical databases exist within individual nodes. Each Redis node can have multiple logical databases, and these databases are independent of each other. When you connect to a Redis node, you can select a specific logical database on that node using the SELECT command.
 
