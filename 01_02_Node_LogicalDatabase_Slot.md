@@ -1,10 +1,10 @@
-#### Nodes: 
+## Nodes: 
 
 In a Redis Cluster, nodes are individual Redis instances forming the cluster. Each node is responsible for a subset of the 16384 slots. Nodes communicate with each other to share information about slots and keys, enabling distributed data management.
 
 Each Redis node has 16 logical databases (indexed from 0 to 15).
 
-#### Slots: 
+## Slots: 
 
 Redis uses hashing to map keys to slots. There are 16384 slots in total in a Redis Cluster (ranging from 0 to 16383). Each key belongs to a specific slot, determined by a hash function applied to the key. Slots are distributed across nodes, ensuring even data distribution in the cluster.
 
@@ -20,7 +20,7 @@ Redis supports multiple logical databases within a single Redis server. Each dat
 When you connect to a specific node, you can work with the logical databases hosted by that node. Each node can have its own set of logical databases, providing data separation and isolation for different use cases or applications.
 
 
-#### Relationship between Logical Database, Nodes, and Slots:
+## Relationship between Logical Database, Nodes, and Slots:
 
 * Each node is responsible for a subset of the keyspace, which is divided into 16384 slots.
 * Each logical database is mapped to a subset of the slots.
@@ -50,7 +50,7 @@ Let's say we have two logical databases, db0 and db1, in Node A. A key "user:123
 
   This sets the key "user:1234" with value "Alice" in logical database 1 of Node A.
 
-### How keys are routed to the appropriate database within a Redis Cluster.
+# How keys are routed to the appropriate database within a Redis Cluster.
 
 ### Example: Routing Keys to Logical Databases in a Redis Cluster
 
