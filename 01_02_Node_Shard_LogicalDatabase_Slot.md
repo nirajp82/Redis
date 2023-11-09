@@ -92,7 +92,8 @@ Consider a Redis Cluster with three nodes: Node A, Node B, and Node C. Each node
 When a client connects to the Redis Cluster, it can connect to any of the nodes. Let's assume the client connects to Node A (`127.0.0.1:7000`).
 
 #### Step 2: Sending a Command with a Key
-The client wants to set a key "user:1234". To determine which logical database the key belongs to, Redis Cluster uses a hash function on the key to map it to a specific slot number (between 0 and 16383).
+The client wants to set a key "user:1234". To determine which logical database the key belongs to, Redis Cluster uses a hash function on the key to map it to a specific slot number (between 0 and 16383). It will use  CRC16 algorithm to calculate the hash value of the key.
+
 
 In this example, let's say the hash slot for "user:1234" is calculated to be 5678.
 
