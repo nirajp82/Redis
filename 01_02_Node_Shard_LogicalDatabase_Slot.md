@@ -9,7 +9,18 @@ A shard is defined as a collection of nodes that serve the same set of slots and
 
 ## Nodes: 
 
-In a Redis Cluster, nodes are individual Redis instances forming the cluster. Each node is responsible for a subset of the 16384 slots. Nodes communicate with each other to share information about slots and keys, enabling distributed data management.
+A node in Redis is a physical Redis server. Each node contains a subset of the Redis data, and it can be either a primary node or a replica node. A primary node is responsible for handling read and write requests, while a replica node is a read-only copy of a primary node.
+
+The relationship between shards and nodes in Redis is as follows:
+
+A shard can contain one or more nodes.
+A node can only belong to one shard.
+A shard can have only one primary node, but it can have multiple replica nodes.
+
+When a client sends a request to Redis, the Redis cluster will first determine which shard the request belongs to. Once the shard has been determined, the request will be routed to the primary node of the shard. If the primary node is unavailable, the request will be routed to one of the replica nodes.
+
+
+Each node is responsible for a subset of the 16384 slots. Nodes communicate with each other to share information about slots and keys, enabling distributed data management.
 
 Each Redis node has 16 logical databases (indexed from 0 to 15).
 
