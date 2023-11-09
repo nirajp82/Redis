@@ -4,8 +4,16 @@ A **shard** is a logical partition of a Redis dataset. Each shard is responsible
 A shard is defined as a collection of nodes that serve the same set of slots and that replicate from each other. A shard may only have a single master at a given time, but may have multiple or no replicas. It is possible for a shard to not be serving any slots while still having replicas.
 
 * Within a shard, one node functions as the read/write primary node. All the other nodes in a shard function as read-only replicas of the primary node.
-* ]Nodes should be deployed in a shard on multiple availability zones or data centers for fault tolerance
+* Nodes should be deployed in a shard on multiple availability zones or data centers for fault tolerance
 * In case of a master node failure, one of the replicas will become the master
+
+A Redis instance can be either a stand-alone instance or a member of a Redis cluster. A stand-alone Redis instance does not have any shards, while a Redis cluster can have one or more shards.
+
+Here are some examples of when sharding may be necessary:
+
+* The application has a large dataset that cannot be stored on a single node.
+* The application has a high read and write load that cannot be handled by a single node.
+* The application requires high availability and needs to be able to continue operating even if one or more nodes fail.
 
 ## Nodes: 
 
