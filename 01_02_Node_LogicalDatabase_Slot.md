@@ -19,6 +19,8 @@ Redis supports multiple logical databases within a single Redis server. Each dat
 
 When you connect to a specific node, you can work with the logical databases hosted by that node. Each node can have its own set of logical databases, providing data separation and isolation for different use cases or applications.
 
+![image](https://github.com/nirajp82/Redis/assets/61636643/03482af5-b739-42af-8f60-8b5c00ad37b9)
+Reference: https://www.aeraki.net/docs/v1.x/tutorials/redis/cluster/
 
 ## Relationship between Logical Database, Nodes, and Slots:
 
