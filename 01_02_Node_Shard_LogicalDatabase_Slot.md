@@ -32,6 +32,12 @@ Each node is responsible for a subset of the 16384 slots. Nodes communicate with
 
 Each Redis node has 16 logical databases (indexed from 0 to 15).
 
+## Logical Databases:
+Redis supports multiple logical databases within a single Redis server. Each database is identified by an index number (from 0 to 15 by default) and operates independently of others. You can switch between databases using the SELECT command. Logical databases are useful for separating different types of data or isolating data for different applications within the same Redis instance. Logical databases exist within individual nodes. Each Redis node can have multiple logical databases, and these databases are independent of each other. When you connect to a Redis node, you can select a specific logical database on that node using the SELECT command.
+
+When you connect to a specific node, you can work with the logical databases hosted by that node. Each node can have its own set of logical databases, providing data separation and isolation for different use cases or applications.
+
+
 ## Slots: 
 
 Redis uses hashing to map keys to slots. There are 16384 slots in total in a Redis Cluster (ranging from 0 to 16383). Each key belongs to a specific slot, determined by a hash function applied to the key. Slots are distributed across nodes, ensuring even data distribution in the cluster.
@@ -46,10 +52,8 @@ In Redis Cluster, the concept of "slots" is used to distribute keys across nodes
 
 in Redis Cluster, the total number of slots is always fixed at 16384, regardless of the number of shards or nodes. Each slot can contain multiple keys. When Redis Cluster is configured, it's essential to distribute these 16384 slots across the available nodes.
 
-## Logical Databases:
-Redis supports multiple logical databases within a single Redis server. Each database is identified by an index number (from 0 to 15 by default) and operates independently of others. You can switch between databases using the SELECT command. Logical databases are useful for separating different types of data or isolating data for different applications within the same Redis instance. Logical databases exist within individual nodes. Each Redis node can have multiple logical databases, and these databases are independent of each other. When you connect to a Redis node, you can select a specific logical database on that node using the SELECT command.
-
-When you connect to a specific node, you can work with the logical databases hosted by that node. Each node can have its own set of logical databases, providing data separation and isolation for different use cases or applications.
+## Keyspace:
+A "keyspace" refers to the collection of all keys stored in the database. It represents the entire set of keys available in a Redis instance. Each key within Redis belongs to a specific keyspace.
 
 ![image](https://github.com/nirajp82/Redis/assets/61636643/03482af5-b739-42af-8f60-8b5c00ad37b9)
 Reference: https://www.aeraki.net/docs/v1.x/tutorials/redis/cluster/
