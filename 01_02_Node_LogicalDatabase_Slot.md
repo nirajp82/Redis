@@ -79,6 +79,9 @@ In this example, let's say the hash slot for "user:1234" is calculated to be 567
    127.0.0.1:7000> SELECT 1
    OK
    ```
+If you connect to a Redis server without explicitly selecting a logical database (using the SELECT command), all keys and entries will be stored in the default logical database, which is database 0. In Redis, database indexing starts from 0, so database 0 is the default logical database where keys and data are stored if no specific database is selected.
+
+However, it is generally considered good practice to select a specific database for your application. This will help to keep your data organized and prevent conflicts with other applications that may be using the same Redis instance.
 
 #### Step 4: Executing the Command
 Now that the client is connected to Node A and has selected logical database 1, it can execute the command to set the key:
