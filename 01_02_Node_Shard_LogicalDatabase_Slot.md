@@ -1,38 +1,17 @@
+## Shard
+A **shard** is a logical partition of a Redis dataset. Each shard is responsible for storing a subset of the overall dataset. Sharding is used to improve the performance and scalability of Redis clusters.
+
+A shard is defined as a collection of nodes that serve the same set of slots and that replicate from each other. A shard may only have a single master at a given time, but may have multiple or no replicas. It is possible for a shard to not be serving any slots while still having replicas.
+
+* Within a shard, one node functions as the read/write primary node. All the other nodes in a shard function as read-only replicas of the primary node.
+* ]Nodes should be deployed in a shard on multiple availability zones or data centers for fault tolerance
+* In case of a master node failure, one of the replicas will become the master
+
 ## Nodes: 
 
 In a Redis Cluster, nodes are individual Redis instances forming the cluster. Each node is responsible for a subset of the 16384 slots. Nodes communicate with each other to share information about slots and keys, enabling distributed data management.
 
 Each Redis node has 16 logical databases (indexed from 0 to 15).
-
-## Shard
-A **shard** is a logical partition of a Redis dataset. Each shard is responsible for storing a subset of the overall dataset. Sharding is used to improve the performance and scalability of Redis clusters.
-
-A **node** is a physical server that is running Redis. Each node can host multiple shards.
-
-In a Redis cluster, each shard is replicated to one or more nodes. This replication ensures that the cluster remains available even if a node fails.
-
-Here is an example:
-
-```
-Redis cluster with 3 nodes and 2 shards:
-
-Node 1: shard 0
-Node 2: shard 1
-Node 3: replica of shard 1
-```
-
-In this example, each node hosts one shard. Node 3 is a replica of shard 1. This means that if node 2 fails, Node 3 can take over as the primary node for shard 1.
-
-Sharding and replication are two of the key features of Redis clusters. They allow Redis clusters to scale to large datasets and to remain available even if some nodes fail.
-
-Here is a table that summarizes the key differences between shards and nodes in Redis:
-
-| Feature | Shard | Node |
-|---|---|---|
-| Definition | Logical partition of a Redis dataset | Physical server running Redis |
-| Responsibility | Stores a subset of the overall dataset | Hosts one or more shards |
-| Replication | Replicated to one or more nodes | Can be a primary node or a replica node |
-
 
 ## Slots: 
 
