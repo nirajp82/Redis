@@ -2,6 +2,7 @@
 
 In a Redis Cluster, nodes are individual Redis instances forming the cluster. Each node is responsible for a subset of the 16384 slots. Nodes communicate with each other to share information about slots and keys, enabling distributed data management.
 
+
 In the context of Redis, a shard is often used interchangeably with a node. Each shard or node represents an independent Redis instance that is responsible for a subset of the dataset. When you shard your data in Redis, you distribute the dataset across multiple nodes, allowing for horizontal scaling and improved performance.
 
 In a sharded Redis setup, the data is partitioned into several shards (or nodes), each residing on a separate server or process. Each shard is a complete and independent Redis server that handles a specific portion of the dataset. The sharding process ensures that each piece of data (or key) belongs to a specific shard based on hashing algorithms, allowing for efficient distribution of data across the nodes.
