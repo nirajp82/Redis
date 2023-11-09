@@ -14,7 +14,7 @@ Slots per Node = Total Slots / Total Nodes
 
 Slots per Node =  16384 (Total Slots)/ Total Nodes
 
-#### Logical Databases:
+## Logical Databases:
 Redis supports multiple logical databases within a single Redis server. Each database is identified by an index number (from 0 to 15 by default) and operates independently of others. You can switch between databases using the SELECT command. Logical databases are useful for separating different types of data or isolating data for different applications within the same Redis instance. Logical databases exist within individual nodes. Each Redis node can have multiple logical databases, and these databases are independent of each other. When you connect to a Redis node, you can select a specific logical database on that node using the SELECT command.
 
 When you connect to a specific node, you can work with the logical databases hosted by that node. Each node can have its own set of logical databases, providing data separation and isolation for different use cases or applications.
