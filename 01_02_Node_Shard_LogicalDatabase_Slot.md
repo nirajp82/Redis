@@ -92,21 +92,24 @@ Consider a Redis Cluster with three nodes: Node A, Node B, and Node C. Each node
 When a client connects to the Redis Cluster, it can connect to any of the nodes. Let's assume the client connects to Node A (`127.0.0.1:7000`).
 
 #### Step 2: Sending a Command with a Key
-The client wants to set a key "user:1234". To determine which logical database the key belongs to, Redis Cluster uses a hash function on the key to map it to a specific slot number (between 0 and 16383). It will use  CRC16 algorithm to calculate the hash value of the key.
+The client wants to set a key "user:1234". To determine which logical database the key belongs to, Redis Cluster uses a hash function on the key to map it to a specific slot number (between 0 and 16383). 
 
+Redis Cluster uses CRC16 (Cyclic Redundancy Check 16-bit) hashing algorithm to map keys to specific hash slots. When you add or access a key in Redis Cluster, the CRC16 hash function is applied to the key to determine the hash slot to which the key belongs. The resulting slot number ranges from 0 to 16383.
 
 In this example, let's say the hash slot for "user:1234" is calculated to be 5678.
 
 #### Step 3: Mapping Slot to Node and Database
-1. **Slot to Node Mapping:**
+
+Each node in the Redis Cluster is responsible for a range of hash slots. The cluster ensures an even distribution of slots across nodes. For instance:
+
+*. **Slot to Node Mapping:**
    - Node A: Slots 0-5460
    - Node B: Slots 5461-10921
    - Node C: Slots 10922-16383
 
-2. **Database Selection:**
-   Since Node A is responsible for slots 0-5460, the key "user:1234" (slot 5678) belongs to Node A.
+   In our example, slot 5678 falls within the range of Node A.
 
-3. **Logical Database Selection:**
+*. **Logical Database Selection  (Optional):**
    Within Node A, the client can specify the logical database to use. For example, if the client selects logical database 1 using the `SELECT` command:
    ```
    127.0.0.1:7000> SELECT 1
