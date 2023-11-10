@@ -29,7 +29,9 @@
   * HDEL
   * HGETALL: O(N)
   * HINCRBY
+  * HEXISTS
   * RedisJSON
+  * HMSET
 
  * TYPE command
  * OBJECT command
