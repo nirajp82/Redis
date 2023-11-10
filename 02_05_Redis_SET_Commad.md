@@ -51,9 +51,12 @@ Certainly! Here's an explanation of the Redis Set commands you provided along wi
 - **Description**: Returns the intersect of multiple sets.
 - **Example**:
   ```bash
-  > SINTER set1 set2
+  > sadd set-one a b c d e
+   > sadd set-two e f g
+   > sadd set-three c e
+   > sinter set-one set-two set-three
   ```
-  Returns the elements that are common to both 'set1' and 'set2'.
+  Returns the elements that are common in 'set-one', 'set-two' and 'set-three'. >> e
 
 ### SINTERCARD
 - **Description**: Returns the number of members of the intersect of multiple sets.
