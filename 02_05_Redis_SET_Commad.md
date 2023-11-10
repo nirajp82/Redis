@@ -32,11 +32,12 @@ Certainly! Here's an explanation of the Redis Set commands you provided along wi
 - **Description**: Returns the difference of multiple sets.
 - **Example**:
   ```bash
-  > SADD set1 "a" "b" "c"
-  > SADD set2 "b" "c" "d"
-  > SDIFF set1 set2
+   > sadd set-one a b c d e
+   > sadd set-two e f g
+   > sadd set-three c e
+   > sdiff set-one set-two set-three
   ```
-  Returns the elements in 'set1' that are not present in 'set2'.
+  SDIFF performs a logical subtraction from the first Set with the subsequent Sets given. Result would a, b, and d
 
 ### SDIFFSTORE
 - **Description**: Stores the difference of multiple sets in a key.
@@ -138,9 +139,12 @@ Certainly! Here's an explanation of the Redis Set commands you provided along wi
 - **Description**: Returns the union of multiple sets.
 - **Example**:
   ```bash
-  > SUNION set1 set2
+   > sadd set-one a b c d e
+   > sadd set-two e f g
+   > sadd set-three c e
+   > SUNION set-one set-two set-three
   ```
-  Returns all unique elements present in 'set1' or 'set2' or both.
+  Returns all unique elements present in 'set-one', 'set-two' and 'set-three'. >> a,b,c,d,e,f,g
 
 ### SUNIONSTORE
 - **Description**: Stores the union of multiple sets in a key.
