@@ -7,6 +7,8 @@ This makes sets a natural fit for tasks like de-duplication. For ex:
 * Has this URL been blacklisted?" 
 * Redis sets support standard mathematical set operations, like intersection, difference, and union.
 
+  let's say you want to record the unique visitors of each page on our website for a given period of time. A set can be created for each unique URL and time period. For example  Each visitors cookie can be recorded as a member of the set. The set now contains all the unique visitors to that page within the time period which can be retrieved with the SSCAN command. EXPIRE can be used to define the retention period for the metric.
+
 Certainly! Here's an explanation of the Redis Set commands you provided along with examples:
 
 ### SADD
