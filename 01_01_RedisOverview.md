@@ -19,7 +19,7 @@ Redis Cluster uses a number of features to achieve this, including:
 
 Redis Cluster is a good choice for applications that need to handle large datasets and high workloads, or that need high availability and durability.
 
-** Note **
+**Note**
 Remember, Redis always looks at the data type stored at the key before it applies the command. 
 ```redis
 set list-four abc
