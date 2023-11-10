@@ -4,7 +4,12 @@ Only a single level is supported by hash so we cannot embed lists, sets or other
 
 It also allows to add or remove a field dynamically to an existing hash, you can use the HSET/HDEL command.
 
+a. User Profiles:
 
+Storing user profiles where each user's details (username, email, profile picture URL) are stored as fields in a hash.
+Example: user:123 -> {username: "john_doe", email: "john@example.com", profile_pic: "url/to/pic.jpg"}
+
+b. Rate Limiting:
 Let's use the example of rate limiting to explain the mentioned hash commands:
 
 ```bash
