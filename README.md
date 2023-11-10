@@ -23,6 +23,13 @@
   * PTTL
   * TTL
 
+ * HashSet
+  * HGET
+  * HSET
+  * HDEL
+  * HGETALL: O(N)
+  * HINCRBY  
+
 
  * TYPE command
  * OBJECT command
