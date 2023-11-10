@@ -23,6 +23,10 @@
   * PTTL
   * TTL
 
+
+ * TYPE command
+ * OBJECT command
+
  
  * Remove Expiration
   * PERSIST
