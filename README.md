@@ -28,12 +28,11 @@
   * HSET
   * HDEL
   * HGETALL: O(N)
-  * HINCRBY  
-
+  * HINCRBY
+  * RedisJSON
 
  * TYPE command
  * OBJECT command
-
  
  * Remove Expiration
   * PERSIST
