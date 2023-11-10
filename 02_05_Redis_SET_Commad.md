@@ -6,3 +6,144 @@ This makes sets a natural fit for tasks like de-duplication. For ex:
 * Is this user online?
 * Has this URL been blacklisted?" 
 * Redis sets support standard mathematical set operations, like intersection, difference, and union.
+
+Certainly! Here's an explanation of the Redis Set commands you provided along with examples:
+
+### SADD
+- **Description**: Adds one or more members to a set. Creates the key if it doesn't exist.
+- **Example**:
+  ```bash
+  > SADD myset "member1"
+  > SADD myset "member2" "member3"
+  ```
+  This command adds "member1" to the set named 'myset'. It then adds "member2" and "member3" to the same set.
+
+### SCARD
+- **Description**: Returns the number of members in a set.
+- **Example**:
+  ```bash
+  > SCARD myset
+  ```
+  Returns the cardinality (number of members) of the set 'myset'.
+
+### SDIFF
+- **Description**: Returns the difference of multiple sets.
+- **Example**:
+  ```bash
+  > SADD set1 "a" "b" "c"
+  > SADD set2 "b" "c" "d"
+  > SDIFF set1 set2
+  ```
+  Returns the elements in 'set1' that are not present in 'set2'.
+
+### SDIFFSTORE
+- **Description**: Stores the difference of multiple sets in a key.
+- **Example**:
+  ```bash
+  > SDIFFSTORE difference_set set1 set2
+  ```
+  Stores the elements that are in 'set1' but not in 'set2' into a new set named 'difference_set'.
+
+### SINTER
+- **Description**: Returns the intersect of multiple sets.
+- **Example**:
+  ```bash
+  > SINTER set1 set2
+  ```
+  Returns the elements that are common to both 'set1' and 'set2'.
+
+### SINTERCARD
+- **Description**: Returns the number of members of the intersect of multiple sets.
+- **Example**:
+  ```bash
+  > SINTERCARD set1 set2
+  ```
+  Returns the number of elements that are common to both 'set1' and 'set2'.
+
+### SINTERSTORE
+- **Description**: Stores the intersect of multiple sets in a key.
+- **Example**:
+  ```bash
+  > SINTERSTORE intersection_set set1 set2
+  ```
+  Stores the elements that are common to both 'set1' and 'set2' into a new set named 'intersection_set'.
+
+### SISMEMBER
+- **Description**: Determines whether a member belongs to a set.
+- **Example**:
+  ```bash
+  > SISMEMBER myset "member1"
+  ```
+  Checks if "member1" is a member of the set 'myset'.
+
+### SMEMBERS
+- **Description**: Returns all members of a set.
+- **Example**:
+  ```bash
+  > SMEMBERS myset
+  ```
+  Returns all members of the set 'myset'.
+
+### SMISMEMBER
+- **Description**: Determines whether multiple members belong to a set.
+- **Example**:
+  ```bash
+  > SMISMEMBER myset "member1" "member2"
+  ```
+  Checks if "member1" and "member2" are members of the set 'myset'.
+
+### SMOVE
+- **Description**: Moves a member from one set to another.
+- **Example**:
+  ```bash
+  > SMOVE source_set destination_set "member1"
+  ```
+  Moves "member1" from 'source_set' to 'destination_set'.
+
+### SPOP
+- **Description**: Returns one or more random members from a set after removing them. Deletes the set if the last member was popped.
+- **Example**:
+  ```bash
+  > SPOP myset
+  ```
+  Removes and returns a random member from 'myset'. If 'myset' becomes empty, the set is deleted.
+
+### SRANDMEMBER
+- **Description**: Get one or multiple random members from a set.
+- **Example**:
+  ```bash
+  > SRANDMEMBER myset 2
+  ```
+  Returns 2 random members from 'myset' without removing them.
+
+### SREM
+- **Description**: Removes one or more members from a set. Deletes the set if the last member was removed.
+- **Example**:
+  ```bash
+  > SREM myset "member1" "member2"
+  ```
+  Removes "member1" and "member2" from 'myset'. If 'myset' becomes empty, the set is deleted.
+
+### SSCAN
+- **Description**: Iterates over members of a set.
+- **Example**:
+  ```bash
+  > SSCAN myset 0
+  ```
+  Starts an iteration over members of 'myset'. The '0' is the cursor indicating the start.
+
+### SUNION
+- **Description**: Returns the union of multiple sets.
+- **Example**:
+  ```bash
+  > SUNION set1 set2
+  ```
+  Returns all unique elements present in 'set1' or 'set2' or both.
+
+### SUNIONSTORE
+- **Description**: Stores the union of multiple sets in a key.
+- **Example**:
+  ```bash
+  > SUNIONSTORE union_set set1 set2
+  ```
+  Stores all unique elements present in 'set1' or 'set2' or both into a new set named 'union_set'.
