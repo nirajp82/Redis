@@ -1,5 +1,10 @@
 In Redis, a hash is a data structure that maps fields to values, similar to a dictionary or a map. Hashes in Redis are useful for representing objects or entities with multiple attributes, and they provide efficient ways to perform operations on these attributes.
 
+Only a single level is supported by hash so we cannot embed lists, sets or other structures within a hash (nested hashes). Each field is a direct key-value pair. 
+
+It also allows to add or remove a field dynamically to an existing hash, you can use the HSET/HDEL command.
+
+
 Let's use the example of rate limiting to explain the mentioned hash commands:
 
 ```bash
