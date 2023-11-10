@@ -1,5 +1,8 @@
-In Redis, a List is a data structure that represents a collection of ordered elements. Each element in a list is associated with an index, and you can perform various operations on the list, such as adding elements to the beginning or end, retrieving elements by index, and more. Lists in Redis are implemented as linked lists, providing constant time operations for adding or removing elements from the head or tail of the list.
-
+In Redis, a List is a data structure that represents a collection of ordered elements. 
+Each element in a list is associated with an index, and you can perform various operations on the list, such as adding elements to the beginning 
+or end, retrieving elements by index, and more. 
+Lists in Redis are implemented as linked lists, providing constant time operations for adding or removing elements from the head or tail of the list.
+In the List duplicate elements or values are allowed.
 ### List Operations:
 
 1. **LPUSH and RPUSH**: Add an element to the left (head) or right (tail) of the list.
