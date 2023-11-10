@@ -123,7 +123,7 @@ redis> HSET user:2 followers 800
 redis> HSET user:2 last_login "2023-11-10T09:45:00"
 ```
 
-
+```
 |-------------|           |-----------------------------------|
 |  Redis Key  |           |         Hash Map in Memory        |
 |-------------|           |-----------------------------------|
@@ -140,7 +140,7 @@ redis> HSET user:2 last_login "2023-11-10T09:45:00"
 |             |           |  +-----------+  +--------------+  |
 |             |           |  | last_login|  | 2023-11-10...|  |
 |-------------|           |  +-----------+  +--------------+  |
-                  
+```               
 In this example:
 
 - Each user has a unique user ID (1 and 2 in this case).
