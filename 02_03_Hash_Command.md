@@ -1,4 +1,8 @@
-In Redis, a Hash is a data structure that represents a **collection of field-value pairs**. It's similar to a dictionary or a map in other programming languages. In Redis Hashes, each field is a unique identifier, and its associated value can be any Redis data type. Hashes are particularly useful when you need to represent objects or entities with multiple attributes. Here are some key aspects of Redis Hashes:
+In Redis, a Hash is a data structure that represents a **collection of field-value pairs**. It's similar to a dictionary or a map in other programming languages. In Redis Hashes, each field is a unique identifier, and its associated value can be any Redis data type. Hashes are particularly useful when you need to represent objects or entities with multiple attributes.
+
+Expiration can only be defined on a Key, not a Field within a Key. So you can make the whole Hash expire, but not an individual field.
+
+Here are some key aspects of Redis Hashes:
 
 ### Hash Operations:
 
