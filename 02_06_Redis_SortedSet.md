@@ -199,36 +199,6 @@ In summary, these commands and operations demonstrate how Redis Sorted Sets can 
     > ZUNIONSTORE result_set 2 set1 set2 WEIGHTS 2 3
     ```
 
-### Example Use Cases:
-
-1. **Leaderboards**:
-   - Storing player scores in a game leaderboard, where the score is updated based on player performance.
-
-2. **Ranking Systems**:
-   - Implementing ranking systems for various entities, such as products, users, or content based on certain criteria.
-
-3. **Real-Time Analytics**:
-   - Keeping track of real-time analytics data, where each event contributes to the score of a specific item.
-
-4. **Job Prioritization**:
-   - Prioritizing jobs in a queue based on their urgency or importance by assigning scores to the jobs.
-
-5. **Range Queries**:
-   - Efficiently retrieving a subset of items with scores within a specific range.
-
-6. **Social Media Activity**:
-   - Storing and ranking user posts or activities based on engagement metrics.
-
-7. **Top N Recommendations**:
-   - Building recommendation systems where items with higher scores are recommended to users.
-
-8. **Time Series Data**:
-   - Representing time series data, where the score corresponds to the timestamp, and the member is the data point.
-
-9. **Geospatial Indexing**:
-   - Representing locations with scores in a geographic context, where the score represents proximity or relevance.
-
-10. **Expiry with Scores**:
-    - Implementing an expiry mechanism by associating a timestamp as the score, and periodically removing outdated entries.
+https://redis.io/commands/?group=sortedset
 
 In summary, Redis Sorted Sets are versatile and find application in scenarios where you need to maintain an ordered collection of unique elements with associated scores. They are particularly useful for scenarios that involve ranking, scoring, or ordering based on certain criteria.
