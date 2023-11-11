@@ -8,7 +8,7 @@ In Redis, a Sorted Set is a data structure that combines the features of a set a
   
 * The sorted set can be traversed in ascending or descending order and can be manipulated by score, value and lexicography.
 
-* The sorted sets also provide the ability to create a union and intersection results from a number of other sets and sorted sets. 
+* The sorted sets also provide the ability to create a union, intersection and difference results from a number of other sets and sorted sets. The Difference operator was added in Redis 6.2 as the ZDIFF command.
 
 ### Use Cases
  Let's go through the commands for building a priority queue and a leaderboard using Redis Sorted Sets, along with explanations for each command:
