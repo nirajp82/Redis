@@ -216,10 +216,6 @@ In this example, `mykey` is a string key associated with the value "Hello, Redis
       > INCRBYFLOAT myfloat 2.3
       ```
 
-12. **LCS**
-    - *Description*: Finds the longest common substring.
-    - *Behavior*: This command is not a standard Redis command as of my knowledge cutoff date (January 2022). It's possible that it's a custom command or part of an extension or module.
-
 13. **MGET**
     - *Description*: Atomically returns the string values of one or more keys.
     - *Behavior*: Retrieves the values associated with the specified keys.
