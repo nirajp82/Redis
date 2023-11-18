@@ -19,6 +19,7 @@ configurationOptions.CertificateSelection += delegate
     return cert;
 };
 ```
+Remember to replace `PATH_TO_CERT_FILE` with the actual path to your certificate file.
 
 2. Set up the certificate validation event handler:
 
@@ -52,8 +53,6 @@ options.SslClientAuthenticationOptions = new Func<string, SslClientAuthenticatio
 ```
 
 The `SslClientAuthenticationOptions` delegate allows you to configure various TLS settings, such as allowed SSL/TLS protocols, allowed cipher suites, certificate selection delegate, and certificate validation delegate.
-
-Remember to replace `PATH_TO_CERT_FILE` with the actual path to your certificate file.
 
 ### Usage Example:
 
