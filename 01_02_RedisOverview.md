@@ -9,7 +9,7 @@ Redis is also highly scalable and can be clustered to handle large datasets and 
 
 Redis: Redis is a single-node database. It operates on a single server and can handle all the data in memory. While it provides great performance for read and write operations, it lacks built-in high availability and automatic sharding for large datasets.
 
-Redis Cluster: Redis Cluster is a distributed implementation of Redis. It provides automatic sharding and partitioning of data across multiple nodes. Redis Cluster offers high availability through automatic failover and supports data replication and partitioning for large datasets, making it suitable for scalable and fault-tolerant applications.
+Redis Cluster: In the case of a redis cluster, a single logical database may be spread over multiple nodes. Redis Cluster is a distributed implementation of Redis. It provides automatic sharding and partitioning of data across multiple nodes. Redis Cluster offers high availability through automatic failover and supports data replication and partitioning for large datasets, making it suitable for scalable and fault-tolerant applications.
 
 Redis Cluster uses a number of features to achieve this, including:
 
