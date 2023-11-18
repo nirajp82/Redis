@@ -20,7 +20,23 @@ ConnectionMultiplexer hides away the details of multiple servers. Because the Co
 
 3. **Automatic Command Pipelining:**
     The multiplexer will maximize usage of your sockets, and automatically pipeline commands sent concurrently.
-   - Command pipelining is an optimization technique that allows multiple commands to be sent to Redis without waiting for each response. This is particularly beneficial for applications that send a large number of commands to Redis. By automatically pipelining commands, the multiplexer significantly reduces latency and improves throughput.  In a traditional request-response model, each command sent from the client to the server would typically require a separate round-trip for each command, with the client waiting for the server's response before sending the next command. Pipelining allows multiple commands to be sent to the server in a batch without waiting for individual responses.
+   - Command pipelining is an optimization technique that allows multiple commands to be sent to Redis without waiting for each response. This is particularly beneficial for applications that send a large number of commands to Redis. By automatically pipelining commands, the multiplexer significantly reduces latency and improves throughput.
+   - Here's how command pipelining works:
+    
+    1. **Batching Commands:**
+       - Instead of sending commands one at a time and waiting for each response before sending the next command, the client batches multiple commands together.
+    
+    2. **Sending Commands in Bulk:**
+       - The client sends the entire batch of commands to the Redis server in a single network request.
+    
+    3. **Server Processing:**
+       - The Redis server processes the batch of commands sequentially and generates responses for each command.
+    
+    4. **Bulk Response:**
+       - The server sends back a bulk response containing the results of each command in the order they were received.
+    
+    5. **Client Parsing:**
+       - The client then parses the bulk response, extracting the results for each com
 
 **Tradeoffs:**
 1. **Head-of-Line Blockages:**
