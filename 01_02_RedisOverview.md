@@ -5,6 +5,9 @@ Redis supports a variety of data structures, including strings, hashes, lists, s
 
 Redis is also highly scalable and can be clustered to handle large datasets and high workloads.
 
+Redis is, mostly, a single-threaded server from the POV (Point of view) of commands execution (actually modern versions of Redis use threads for different things).  Redis is a single-threaded data store, meaning it can only process one command at a time. This means that if you send multiple commands to Redis concurrently, they will all be queued up and processed one after the other.
+
+
 ### Redis vs Redis Cluster
 
 Redis: Redis is a single-node database. It operates on a single server and can handle all the data in memory. While it provides great performance for read and write operations, it lacks built-in high availability and automatic sharding for large datasets.
