@@ -1,4 +1,4 @@
-Simultaneous execution of transactions:
+    In the provided code, two clients, Client A and Client B, are attempting to increment the value of a counter key concurrently (Around same time). To simulate the potential for concurrent execution, a delay is introduced into Client A's transaction.
 
 ```csharp
 // Client A
@@ -63,7 +63,6 @@ Now, let's break down the steps, including the concept of watch:
    - **Step 6:** Executes the transaction with `bool committedB = transactionB.Execute();`. If successful, Client B prints a success message; otherwise, it handles the failure.
 
 * Concurrent Execution of Transactions
-    In the provided code, two clients, Client A and Client B, are attempting to increment the value of a counter key concurrently. To simulate the potential for concurrent execution, a delay is introduced into Client A's transaction.
 
     Client A initiates its transaction, retrieves the current value of the counter, and then introduces a delay. During this delay, Client B initiates its own transaction and retrieves the current value of the counter. Both clients then increment the counter within their respective transactions. Finally, both clients execute their transactions.
 
