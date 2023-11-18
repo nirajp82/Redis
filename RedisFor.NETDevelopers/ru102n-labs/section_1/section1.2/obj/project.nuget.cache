@@ -1,8 +1,27 @@
 {
   "version": 2,
-  "dgSpecHash": "eXvSw+ENqi9Lzxq3y0+tcmTxMle2yeNZYrykoV8husMNLFvBawOrN7wf+QsCRBWTYIgNP1uMQGwO9Zrh++qZuQ==",
+  "dgSpecHash": "aFB2JtNTP7YhD8JjclfM0ZQQ5x6wjBJAqYuehOIDTwsvpR3z+YrmH5lrDi937JcytFP0uAJgZulRKHC1yxdOzg==",
   "success": true,
-  "projectFilePath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\src\\section_1\\section1.2\\section1.2.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\section1.2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.2\\pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\stackexchange.redis\\2.6.70\\stackexchange.redis.2.6.70.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\system.diagnostics.performancecounter\\5.0.0\\system.diagnostics.performancecounter.5.0.0.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\system.drawing.common\\5.0.0\\system.drawing.common.5.0.0.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\system.security.cryptography.protecteddata\\5.0.0\\system.security.cryptography.protecteddata.5.0.0.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\system.security.permissions\\5.0.0\\system.security.permissions.5.0.0.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
+  ],
   "logs": []
 }

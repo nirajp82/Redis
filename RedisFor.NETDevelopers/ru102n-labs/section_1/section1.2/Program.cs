@@ -1,5 +1,10 @@
 ﻿using StackExchange.Redis;
 
-// TODO for Coding Challenge Start here on starting-point branch
+var muxer = ConnectionMultiplexer.Connect(new ConfigurationOptions
+{
+    EndPoints = { "localhost:6379" }
+});
 
-// end programming challenge
+var db = muxer.GetDatabase();
+var res = db.Ping();
+Console.WriteLine($"The ping took: {res.TotalMilliseconds} ms");
