@@ -1,0 +1,83 @@
+<h1>Hands-On with Session State in ASP.NET</h1>
+
+<p>
+    In this Hands-On, we'll be exploring how to do Session State Management in ASP.NET.
+    You'll likely want to open up the csproj file and checkout the <span style="font-family: 'courier new', courier;"><i>starting-point</i></span>
+    before proceeding, unless of course you'd prefer to build everything from scratch.
+</p>
+<p>
+    The csproj file is located at <span style="font-family: 'courier new', courier;">/src/section_3/section3.5/section3.5.csproj</span>. 
+</p>
+<p>
+    It's highly recommended that you use Visual Studio or Rider for this Hands-On.
+</p>
+
+<h2>State of the Application Pre-Redis</h2>
+<p>
+    Similarly to how Session State Management works in ASP.NET Core, ASP.NET has a very direct, native pattern for handling Session State, and
+    a simple way to add Redis as the provider of the Distributed Session State. 
+</p>
+<p>
+    First let's look at the state of the application without Redis
+    as it's Session State.
+</p>
+
+<p>
+    This application is simply a boiler plate ASP.NET MVC app, the template that ships out of the box when you create an MVC project with Visual
+    Studio with a minor exception.
+</p>
+<p>
+    The contents of <span style="font-family: 'courier new', courier;"><i>Views/Home/Index.cshtml</i></span> have been replaced with:
+</p>
+
+<pre>
+<code>
+    @{
+        ViewBag.Title = &quot;Home Page&quot;;
+    }
+    
+    &lt;div class=&quot;jumbotron&quot;&gt;
+        &lt;h1&gt;ASP.NET Distributed Session State with Redis&lt;/h1&gt;
+        &lt;p class=&quot;lead&quot;&gt;Our Session Says the meaning of life is: @Session[&quot;the meaning of life&quot;].&lt;/p&gt;    
+    &lt;/div&gt;
+</code>
+</pre>
+
+<p>
+    Which simply displays <i>the meaning of life</i> key in the Session State. Now, on the Controller side, updating the Session State is 
+    also quite trivial, you simply need to set the Session State key of your choosing. If you take a look at the <span style="font-family: 'courier new', courier;">Index</span> method
+    in <span style="font-family: 'courier new', courier;"><i>Controllers/HomeController.cs</i></span> you'll see a single line of code interacting with the Session State to set our <i>the meaning of life</i>
+    key.
+</p>
+
+<pre>
+<code>
+    Session["the meaning of life"] = 42;
+</code>
+</pre>
+
+<h2>Adding Redis as the Session State Provider</h2>
+
+<p>
+    Adding Redis here is dead simple. First off you need to add the <span style="font-family: 'courier new', courier;"><i>Microsoft.Web.Redis.RedisSessionStateProvider</i></span> package to your
+    application, we've already taken care of this for you.
+</p>
+<p>
+    Then in the <span style="font-family: 'courier new', courier;"><i>Web.config</i></span> file, you'll need to add the <span style="font-family: 'courier new', courier;">sessionState</span> settings
+    inside of the <span style="font-family: 'courier new', courier;">&lt;system.web&gt;</span> tag, add the following below the <span style="font-family: 'courier new', courier;"><i>&lt;!-- Add Session State Here --&gt;</i> mark in the <i>Web.config</i></span> file.
+</p>
+
+<pre>
+<code>
+    <sessionState mode="Custom" customProvider="MySessionStateStore">
+        <providers>        
+          <add name="MySessionStateStore" type="Microsoft.Web.Redis.RedisSessionStateProvider" host="localhost" accessKey="" ssl="false" />
+        </providers>
+      </sessionState>     
+</code>
+</pre>
+
+<p>
+    After doing that, you can run the app by hitting F5, and when the browser launches (to <a href="http://localhost:49982/">http://localhost:49982/</a>)
+    you'll see that the session still works. The only difference being that Redis is now the provider for the Session State.
+</p>
