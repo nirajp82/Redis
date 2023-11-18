@@ -35,6 +35,11 @@ The `IServer` interface defines several methods for performing server-level oper
 * `Save`: Saves the current state of the server to disk.
 * `Slaves`: Gets a list of slaves connected to the server.
 
+Key Scanning
+
+Key scanning is the process of iterating over all of the keys in a Redis database. This operation is typically performed at the server level, as it can be expensive to perform on a large database. The IServer interface provides a Keys method for performing key scanning.
+
+
 7. **Examples of IServer Operations:**
    - - Checking server information: `redisServer.Info()`
      - Checking server configuration: `redisServer.ConfigGet()`
