@@ -28,6 +28,22 @@ Because of this, the ISubscriber is designed to use a separate connection for su
 - **Getting an Instance:**
   - To obtain an instance of `ISubscriber`, you can call the `IConnectionMultiplexer.GetSubscriber()` method. This method provides access to the `ISubscriber` interface, allowing you to manage subscriptions programmatically.
 
+The ISubscriber interface provides several methods for working with subscriptions, including:
+
+* Subscribe(): Subscribes to a channel.
+* Unsubscribe(): Unsubscribes from a channel.
+* Psubscribe(): Subscribes to all channels matching a pattern.
+* Punsubscribe(): Unsubscribes from all channels matching a pattern.
+* Publish(): Publishes a message to a channel.
+
+In addition to these methods, the ISubscriber interface also provides several events that you can subscribe to in order to be notified when messages are published to channels that you are subscribed to. These events include:
+
+* Subscribe(): Raised when a subscription is successful.
+* Unsubscribe(): Raised when a subscription is unsubscribed.
+* Psubscribe(): Raised when a subscription is successful for a channel that matches a pattern.
+* Punsubscribe(): Raised when a subscription is unsubscribed for a channel that matches a pattern.
+* Message(): Raised when a message is published to a channel that you are subscribed to.
+
 ### Example Usage:
 
 ```csharp
