@@ -40,15 +40,37 @@ ConnectionMultiplexer hides away the details of multiple servers. Because the Co
 
 **Tradeoffs:**
 1. **Head-of-Line Blockages:**
-   - Large payloads can cause blockages, delaying other requests.
+   - Head-of-line blockages can occur with large payloads blocking out other requests. Head-of-line blockage occurs when a particular task or request, often a large or time-consuming one, delays the processing of subsequent tasks or requests that are waiting in line behind it.
 
 2. **Blocking Commands:**
    - Blocking commands, like stream reads, cannot be used as they would block the interactive connection.
+     - Blocking commands is an operations that wait for specific conditions, like waiting for a certain element to be added to a list or waiting for a specific score in a sorted set or waiting for new entries to be added to a Redis stream.
+   - It prevents other threads or tasks from using the same connection concurrently. This limitation can impact the overall concurrency and responsiveness of the application.
   
 3. **Transaction Differences:**
-   - Transactions operate differently, with limited support for watches, and commands aren't dispatched to Redis until execution time.
+   - Transactions operate differently, with limited support for watches, and commands aren't dispatched to Redis from redis client until execution time (Until client executes the transaction.commit()).
 
+```cs
+using StackExchange.Redis;
 
+public static void PerformTransaction()
+{
+    var connection = ConnectionMultiplexer.Connect("localhost");
+    var db = connection.GetDatabase();
+
+    using (var transaction = db.CreateTransaction())
+    {
+        transaction.StringSetAsync("key1", "value1");
+        transaction.StringIncrementAsync("counter", 1);
+        transaction.StringSetAsync("key2", "value2");
+
+        transaction.Execute();
+    }
+}
+```
+These commands are not sent to Redis immediately. Instead, they are queued up and executed only when the transaction.Execute() method is called. This can lead to potential race conditions, as the values of key1 or counter could change between the time the commands are added to the transaction and the time the transaction is executed.
+
+While Redis supports watches, the ConnectionMultiplexer has limitations when it comes to fully supporting them in the context of transactions.
 
 Refereces: 
 * https://stackexchange.github.io/StackExchange.Redis/Basics.html
