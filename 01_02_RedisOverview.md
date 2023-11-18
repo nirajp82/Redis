@@ -21,3 +21,27 @@ Redis Cluster uses a number of features to achieve this, including:
 * Consistent hashing: Redis Cluster uses a consistent hashing algorithm to ensure that keys are always assigned to the same node. This ensures that operations on the same key always go to the same node, even if the cluster topology changes.
 
 Redis Cluster is a good choice for applications that need to handle large datasets and high workloads, or that need high availability and durability.
+
+## Sharding
+- **Definition:** Having a portion of the data, e.g., one server holding the odd user IDs and the other holding the even ones.
+- **Performance Improvement:** Improves performance by distributing data across shards, reducing the amount of data queried in each shard.
+- **Implementation:** Requires logic in the program to decide which server to query based on the sharding key.
+
+## Replication
+- **Definition:** Having a full copy of the data of the master. In the simplest form, writes go to the master, while reads can go to either the master or slaves.
+- **Scaling:** Allows horizontal scaling for reading queries. All servers can handle reads, while writes are typically directed to the master.
+- **Use Cases:** Often used for backups, standby instances, and supporting scenarios like analytics and reporting.
+
+## Clustering
+- **Definition:** Having a group of servers in master-master replication, where writes can go to any of them.
+- **Single Point of Failure:** Eliminates the single point of failure by allowing writes on any server in the cluster.
+- **Coordination:** Write transactions are coordinated across the cluster, potentially leading to slower writes.
+
+## Performance Considerations
+- **Sharding:** Improves both queries and writes by distributing data, but queries and data design must consider that only a portion of the data is on each server.
+- **Replication:** Primarily improves reads, works as backups, and supports use cases like analytics.
+- **Clustering:** Takes out the single point of failure but can lead to slower writes due to coordination requirements.
+
+## Combinations
+- **Mixes:** You can have mixes between them, such as shards with replicas or clusters, and replicas of clusters.
+
