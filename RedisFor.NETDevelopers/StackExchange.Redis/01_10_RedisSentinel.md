@@ -23,6 +23,7 @@ Redis Sentinel works by continuously monitoring the state of Redis master and re
 
 3. **Quorum-Based Decision Making:**
    - Sentinel instances use a quorum-based approach for decision making. A quorum is a majority of Sentinel nodes.
+      - In Redis Sentinel, In quorum-based decision-making process majority of Sentinel nodes must agree on the need for a failover before it is executed, providing a reliable mechanism for ensuring the health and stability of the Redis deployment. 
    - Before taking significant actions, such as initiating a failover, Sentinels need to reach a quorum agreement to ensure a reliable decision.
 
 4. **Event Detection:**
