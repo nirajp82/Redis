@@ -77,5 +77,3 @@ var connection = ConnectionMultiplexer.Connect(configurationOptions);
 ```
 
 Make sure to replace `"your.redis.server.com"` with the actual address of your Redis server.
-
-This code snippet is a basic example, and you may need to adjust it based on your specific requirements and the structure of your .NET application.
