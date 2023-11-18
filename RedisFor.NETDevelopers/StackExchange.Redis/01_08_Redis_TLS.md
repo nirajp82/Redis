@@ -1,11 +1,17 @@
-To connect to Redis with TLS in .NET, you can follow different approaches based on whether you are using .NET Framework or .NET Core. Here are the steps for both:
+Connecting to Redis with TLS for .NET involves establishing a secure connection between a .NET application and a Redis server using Transport Layer Security (TLS). TLS provides encryption and authentication, ensuring that data exchanged between the application and the Redis server is protected from eavesdropping and tampering.
 
-### Configuring TLS in .NET Framework:
+**Differences between .NET Framework and .NET Core:**
 
-#### Event Handlers Approach:
+- **.NET Framework:** TLS configuration is limited to setting up certificate selection and validation event handlers or environment variables.
 
-1. Set up the certificate selection event handler:
+- **.NET Core:** TLS configuration is more flexible, allowing for configuring allowed SSL/TLS protocols, TLS/SSL cipher suites, certificate selection delegate, and certificate validation delegate.
 
+**Configuring TLS in .NET Framework:**
+
+1. **Event Handlers:**
+   - **CertificateSelection:** Selects the certificate for authentication with the Redis server.
+   - **CertificateValidation:** Checks the validity of the Redis server's certificates.
+ 
 ```csharp
 configurationOptions.CertificateSelection += delegate 
 {
