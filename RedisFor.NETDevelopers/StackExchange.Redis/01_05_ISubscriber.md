@@ -1,6 +1,10 @@
 ## ISubscriber Interface
 
-The `ISubscriber` interface in StackExchange.Redis is responsible for managing subscriptions to Redis channels in the publish/subscribe (pub/sub) paradigm. Unlike other interfaces discussed earlier, the `ISubscriber` operates independently of the interactive connection.
+The `ISubscriber` interface in StackExchange.Redis is responsible for managing subscriptions to Redis in the pub/sub system. Unlike the other interfaces, the ISubscriber does not use the interactive Redis connection.
+
+This is because Redis is a publish-subscribe system, which means that messages are sent to channels and subscribers listen for messages on those channels. When you subscribe to a channel, your Redis connection enters subscription mode, which limits the connection to only use commands that are related to the pub/sub system.
+
+Because of this, the ISubscriber is designed to use a separate connection for subscriptions. The ConnectionMultiplexer will automatically open a separate connection for subscriptions when you call the IConnectionMultiplexer.GetSubscriber() method. This ensures that your interactive Redis connection is not affected by your subscriptions.
 
 ### Purpose and Design:
 
