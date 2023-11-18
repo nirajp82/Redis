@@ -1,4 +1,4 @@
-    In the provided code, two clients, Client A and Client B, are attempting to increment the value of a counter key concurrently (Around same time). To simulate the potential for concurrent execution, a delay is introduced into Client A's transaction.
+In the provided code, two clients, Client A and Client B, are attempting to increment the value of a counter key concurrently (Around same time). To simulate the potential for concurrent execution, a delay is introduced into Client A's transaction.
 
 ```csharp
 // Client A
