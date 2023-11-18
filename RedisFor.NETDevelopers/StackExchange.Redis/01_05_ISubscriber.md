@@ -1,5 +1,3 @@
-Certainly! Here's an explanation of the Redis `ISubscriber` interface:
-
 ## ISubscriber Interface
 
 The `ISubscriber` interface in StackExchange.Redis is responsible for managing subscriptions to Redis channels in the publish/subscribe (pub/sub) paradigm. Unlike other interfaces discussed earlier, the `ISubscriber` operates independently of the interactive connection.
