@@ -1,4 +1,6 @@
-Certainly, here's a detailed explanation of pipelining in StackExchange.Redis in .NET, illustrated with practical examples:
+Pipelining is a critically important concept for maximizing throughput to Redis. When you need to execute multiple commands against Redis, and the intermediate results can be temporarily ignored, pipelining can drastically reduce the number of round trips required to Redis, which can drastically increase performance, as many operations are hundreds of times faster than the Round Trip Time (RTT).
+
+With StackExchange.Redis, there are two ways to pipeline commands, either implicitly with the Async API, and explicitly with the IBatch API.
 
 **Pipelining: Enhancing Redis Throughput**
 
