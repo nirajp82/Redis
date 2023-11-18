@@ -18,8 +18,24 @@ The `IServer` interface in StackExchange.Redis serves as an abstraction to inter
 
 5. **Not for Data Modeling Commands:**
    - `IServer` is not typically used for data modeling commands. Tasks related to managing and manipulating data, like storing, retrieving, or modifying key-value pairs, are more suited for the `IDatabase` interface.
+  
+6. **IServer Methods**
 
-6. **Examples of IServer Operations:**
+The `IServer` interface defines several methods for performing server-level operations. Some of the most important methods include:
+
+* `ClusterConfiguration`: Gets the cluster configuration of the server, if known.
+* `EndPoint`: Gets the address of the connected server.
+* `Features`: Gets the features supported by the connected server.
+* `IsConnected`: Gets whether the connection to the server is active and usable.
+* `Protocol`: Gets the protocol being used to communicate with the server.
+* `IsReplica`: Gets whether the connected server is a replica.
+* `Info`: Gets detailed information about the server.
+* `ConfigGet`: Gets the current configuration of the server.
+* `ConfigSet`: Sets the configuration of the server.
+* `Save`: Saves the current state of the server to disk.
+* `Slaves`: Gets a list of slaves connected to the server.
+
+7. **Examples of IServer Operations:**
    - - Checking server information: `redisServer.Info()`
      - Checking server configuration: `redisServer.ConfigGet()`
      - Updating server configuration: `redisServer.ConfigSet()`
