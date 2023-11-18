@@ -2,7 +2,9 @@ The most fundamental architectural feature of StackExchange.Redis is Connection 
 
 **Fundamental Feature: Connection Multiplexing**
 - **Key Component:** ConnectionMultiplexer class is central to StackExchange.Redis, ConnectionMultiplexer class is responsible for arbitrating all connections to Redis, and routing all commands we want to send through the library through a **single connection**.
+  
 - **Number of Connections:** he ConnectionMultiplexer opens exactly 2 connections per Redis Server, one of which is the interactive command connection to Redis, the other being the subscription connection for the pub/sub API.
+  
 - **Alignment with Redis Architecture:** StackExchange.Redis uses a single connection multiplexer to manage all connections to Redis. This means that even if you send multiple commands concurrently, they will all be sent through the same connection. Sending additional commands concurrently doesn't help much because Redis can only process one command at a time. This means that even if you send multiple commands concurrently, they will still be queued up and processed one after the other.  Number of connections managed by the connection multiplexer matches the number of command threads in Redis. Since Redis only has one command thread, there is no need to open multiple connections. So this design of StackExchange.Redis aligns with Redis's single-threaded architecture. It uses a single connection because Redis's command processing is inherently single-threaded. Since Redis only has one command thread, there is no need to open multiple connections.
 
 ConnectionMultiplexer hides away the details of multiple servers. Because the ConnectionMultiplexer does a lot, it is designed to be shared and reused between callers. You should not create a ConnectionMultiplexer per operation. It is fully thread-safe and ready for this usage.
