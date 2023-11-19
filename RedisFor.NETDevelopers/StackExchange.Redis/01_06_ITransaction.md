@@ -69,12 +69,8 @@ In this example:
 6. After the transaction, we retrieve values from Redis to see the changes made by the transaction.
 
 
-**Additional Methods**
-
-The `ITransaction` interface provides several additional methods, including:
-
-* `Discard`: Cancels the transaction and rolls back any changes.
-* `Watch`: Watches one or more keys for changes. If any of the watched keys are changed before the transaction is committed, the transaction will fail.
+**Note**
+<ins> If you try awaiting any of the tasks before `Execute` method is invoked, you can accidentally deadlock your command. </ins>
 
 **Summary**
 
