@@ -755,9 +755,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\section1.2.csproj",
-      "projectName": "section1.2",
-      "projectPath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\section1.2.csproj",
+      "projectUniqueName": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\section1.2_Basic.csproj",
+      "projectName": "section1.2_Basic",
+      "projectPath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\section1.2_Basic.csproj",
       "packagesPath": "C:\\Users\\Edu4K\\.nuget\\packages\\",
       "outputPath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\obj\\",
       "projectStyle": "PackageReference",

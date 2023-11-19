@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "section1.2", "section_1\section1.2\section1.2.csproj", "{787FEA2B-BD35-4CE1-A3FF-3017178AA90A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "section1.2_Basic", "section_1\section1.2\section1.2_Basic.csproj", "{787FEA2B-BD35-4CE1-A3FF-3017178AA90A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "section1.5", "section_1\section1.5\section1.5.csproj", "{9FB7CE4A-DE71-47BC-BCC5-BA61CF767AA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "section1.5_Pipeline", "section_1\section1.5\section1.5_Pipeline.csproj", "{9FB7CE4A-DE71-47BC-BCC5-BA61CF767AA7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "section1.7", "section_1\section1.7\section1.7.csproj", "{DBEBFA14-3481-476E-8E8B-AFF3D2978132}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "section1.7_Transaction", "section_1\section1.7\section1.7_Transaction.csproj", "{DBEBFA14-3481-476E-8E8B-AFF3D2978132}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{30DE5CAC-059A-4D8F-A809-BFBD4BB49E0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{30DE5CAC-059A-4D8F-A809-BFBD4BB49E0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
