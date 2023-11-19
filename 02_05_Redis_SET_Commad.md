@@ -1,4 +1,10 @@
 ### Set
+Redis Sets are an implementation of a mathematical set. Like mathematical sets they have a number of key properties:
+
+* They are unordered.
+* They do not allow duplication, so there are no repeated members.
+* They can be combined together to create new sets
+
 In Redis, a set is an unordered (no position or index used to retrieve values.) collection of strings that contains no duplicates. So if you add the same value to an empty set 20 times or even a million times, the set will contain just one member.
 
 This makes sets a natural fit for tasks like de-duplication. For ex:
