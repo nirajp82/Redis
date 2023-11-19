@@ -1,4 +1,4 @@
-In the provided code, two clients, Client A and Client B, are attempting to increment the value of a counter key concurrently (Around same time). To simulate the potential for concurrent execution, a delay is introduced into Client A's transaction.
+In the provided code, two clients, Client A and Client B, are attempting to increment the value of a counter key concurrently (same time).
 
 ```csharp
 // Client A
@@ -48,12 +48,17 @@ Now, let's break down the steps, including the concept of watch:
 1. **Client A:**
    - **Step 1:** Initiates a transaction and retrieves the current value of the counter using `var getValueA = transactionA.StringGetAsync("counter");`.
    - **Step 2:** Increments the counter within the transaction using `transactionA.StringIncrementAsync("counter");`.
-   - **Step 3:** Executes the transaction with `bool committedA = transactionA.Execute();`. If successful, Client A prints a success message; otherwise, it handles the failure.
+   - **Step 3:** Executes the transaction with `bool committedA = transactionA.Execute();`. At this time `transactionA.StringGetAsync()`
+`transactionA.StringIncrementAsync()` will be executed on the redis server. 
+   - If successful, Client A prints a success message; otherwise, it handles the failure.
 
 2. **Client B:**
    - **Step 4:** Initiates a separate transaction and retrieves the current value of the counter using `var getValueB = transactionB.StringGetAsync("counter");`.
    - **Step 5:** Increments the counter within the transaction using `transactionB.StringIncrementAsync("counter");`.
-   - **Step 6:** Executes the transaction with `bool committedB = transactionB.Execute();`. If successful, Client B prints a success message; otherwise, it handles the failure.
+   - 
+   - **Step 6:** Executes the transaction with `bool committedB = transactionB.Execute();`. At this time `transactionB.StringGetAsync()`
+`transactionB.StringIncrementAsync()` will be executed on the redis server. 
+   - If successful, Client B prints a success message; otherwise, it handles the failure.
 
 * Concurrent Execution of Transactions
 
