@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = section1._2
-build_property.ProjectDir = C:\Projects\Redis\RU102N\Redis\RedisFor.NETDevelopers\ru102n-labs\section_1\section1.7\
+build_property.ProjectDir = C:\Projects\Redis\RU102N\Redis\RedisFor.NETDevelopers\ru102n-labs\section_1_Intro\section1.7_Transaction\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

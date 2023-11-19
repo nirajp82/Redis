@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "N0OBeOsFDIy4isUrcFevXhbGRNTmuMW25If2PCernaztP8jIm1L+DDrvGircVa4s0QJSm6aA2jrUWGtIe4zslQ==",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_2_DataStructure\\section2.8_transaction\\section2.8_transaction.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Edu4K\\.nuget\\packages\\pipelines.sockets.unofficial\\2.2.2\\pipelines.sockets.unofficial.2.2.2.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\stackexchange.redis\\2.6.80\\stackexchange.redis.2.6.80.nupkg.sha512",
+    "C:\\Users\\Edu4K\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nh8644EVp7sGmNGji+jRAdMd6bhvOiDYfnfQhHiQfRiHOW+yexz6Px+5MzuRQ1N7nTwBORT6PAm1T/P6eBsFpw==",
+  "dgSpecHash": "E1qbfd5nyuLm73kOMZ90fEyVgwbhoiEfFqNsEe4W4J2LkjLXl+V3INcK7vyLwfLO7GUl6kGD6mMwQRRpXpaLPw==",
   "success": true,
-  "projectFilePath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.7\\section1.7_Transaction.csproj",
+  "projectFilePath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1_Intro\\section1.7_Transaction\\section1.7_Transaction.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",

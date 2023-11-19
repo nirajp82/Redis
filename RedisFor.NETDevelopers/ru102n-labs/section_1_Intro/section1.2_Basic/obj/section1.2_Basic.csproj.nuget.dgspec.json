@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\section1.2_Basic.csproj": {}
+    "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1_Intro\\section1.2_Basic\\section1.2_Basic.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\section1.2_Basic.csproj": {
+    "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1_Intro\\section1.2_Basic\\section1.2_Basic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\section1.2_Basic.csproj",
+        "projectUniqueName": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1_Intro\\section1.2_Basic\\section1.2_Basic.csproj",
         "projectName": "section1.2_Basic",
-        "projectPath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\section1.2_Basic.csproj",
+        "projectPath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1_Intro\\section1.2_Basic\\section1.2_Basic.csproj",
         "packagesPath": "C:\\Users\\Edu4K\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\obj\\",
+        "outputPath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1_Intro\\section1.2_Basic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Edu4K\\AppData\\Roaming\\NuGet\\NuGet.Config",

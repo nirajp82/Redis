@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.5\\section1.5_Pipeline.csproj": {}
+    "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1_Intro\\section1.5_Pipeline\\section1.5_Pipeline.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.5\\section1.5_Pipeline.csproj": {
+    "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1_Intro\\section1.5_Pipeline\\section1.5_Pipeline.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.5\\section1.5_Pipeline.csproj",
+        "projectUniqueName": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1_Intro\\section1.5_Pipeline\\section1.5_Pipeline.csproj",
         "projectName": "section1.5_Pipeline",
-        "projectPath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.5\\section1.5_Pipeline.csproj",
+        "projectPath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1_Intro\\section1.5_Pipeline\\section1.5_Pipeline.csproj",
         "packagesPath": "C:\\Users\\Edu4K\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.5\\obj\\",
+        "outputPath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1_Intro\\section1.5_Pipeline\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Edu4K\\AppData\\Roaming\\NuGet\\NuGet.Config",
