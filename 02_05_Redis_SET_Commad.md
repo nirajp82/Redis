@@ -15,7 +15,70 @@ This makes sets a natural fit for tasks like de-duplication. For ex:
 
   let's say you want to record the unique visitors of each page on our website for a given period of time. A set can be created for each unique URL and time period. For example  Each visitors cookie can be recorded as a member of the set. The set now contains all the unique visitors to that page within the time period which can be retrieved with the SSCAN command. EXPIRE can be used to define the retention period for the metric.
 
-Certainly! Here's an explanation of the Redis Set commands you provided along with examples:
+
+---
+```cs
+    var allUsersSet = "users";
+    var activeUsersSet = "users:state:active";
+    var inactiveUsersSet = "users:state:inactive";
+    var offlineUsersSet = "users:state:offline";
+```
+**Populate Sub Sets**
+
+Now let's go about populating our active, inactive, and offline user sets. To do this, we'll use the `SetAdd` Method. This method is variadic, so we can do it in one command for each set.
+
+```csharp
+db.SetAdd(activeUsersSet, new RedisValue[]{"User:1", "User:2"});
+db.SetAdd(inactiveUsersSet, new RedisValue[]{"User:3", "User:4"});
+db.SetAdd(offlineUsersSet, new RedisValue[]{"User:5", "User:6", "User:7"});
+```
+
+**Combining sets to get all users**
+
+You'll notice that we did not populate our `allUsersSet` set. If we consider active, inactive, offline to be an exhaustive list of states, we can use the set combination operations to get a set with all of our users. We can even use `SetCombineAndStore` to store those combined users in our all users key.
+
+```csharp
+db.SetCombineAndStore(SetOperation.Union, allUsersSet, new RedisKey[]{activeUsersSet, inactiveUsersSet, offlineUsersSet});
+```
+
+**Check Membership**
+
+Sets do not allow duplication, but they allow very rapid O(1) membership checks. So if we wanted to check to see if `User:6` is offline, we could do so very easily:
+
+```csharp
+var user6Offline = db.SetContains(offlineUsersSet, "User:6");
+Console.WriteLine($"User:6 offline: {user6Offline}");
+```
+
+**Enumerate Set**
+
+When you want to enumerate the members of a set, you have two options: you can enumerate them all in one shot, or you can scan over the set and enumerate everything. We'll go over how to do each of those here.
+
+**Enumerate Entire Set**
+
+If you want to guarantee that you are enumerating the entire set in one round trip, you can do so by using the `SetMembers` method. This will use the `SMEMBERS` command in Redis. If your set is relatively compact (under 1000 members), this is a perfectly valid way to pull back all of your set members.
+
+```csharp
+Console.WriteLine($"All Users In one shot: {string.Join(", ", db.SetMembers(allUsersSet))}");
+```
+
+**Enumerate Set in Chunks**
+
+The alternate way to enumerate a set is to enumerate it with `SetScan`, which will create a Set Enumerator and use the `SSCAN` command to scan over the entire set until the set is exhausted.
+
+```csharp
+Console.WriteLine($"All Users with scan  : {string.Join(", ", db.SetScan(allUsersSet))}");
+```
+
+**Move Elements Between Sets**
+
+A very normal operation you might need to perform with sets is to move elements between them. For example, if `User:1` were to move offline, you can use `SetMove` to move them from the active user set to the offline user set.
+
+```csharp
+Console.WriteLine("Moving User:1 from active to offline");
+var moved = db.SetMove(activeUsersSet, offlineUsersSet, "User:1");
+Console.WriteLine($"Move Successful: {moved}");
+```
 
 ### SADD
 - **Description**: Adds one or more members to a set. Creates the key if it doesn't exist.
