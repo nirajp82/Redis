@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("section2.7_lua_scripting")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8aa95c3558912d34452153fff58435c5db27ba6d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("section2.7_lua_scripting")]
 [assembly: System.Reflection.AssemblyTitleAttribute("section2.7_lua_scripting")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
