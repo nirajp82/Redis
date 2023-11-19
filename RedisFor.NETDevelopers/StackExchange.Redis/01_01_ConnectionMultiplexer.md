@@ -21,7 +21,17 @@ ConnectionMultiplexer hides away the details of multiple servers. Because the Co
 3. **Automatic Command Pipelining:**
     The multiplexer will maximize usage of your sockets, and automatically pipeline commands sent concurrently.
    - Command pipelining is an optimization technique that allows multiple commands to be sent to Redis without waiting for each response. This is particularly beneficial for applications that send a large number of commands to Redis. By automatically pipelining commands, the multiplexer significantly reduces latency and improves throughput.
-   - The key point is that when you use asynchronous commands (Async methods), StackExchange.Redis inherently leverages pipelining.
+   - The key point is that when you use asynchronous commands (Async methods and await for the result in the end), StackExchange.Redis inherently leverages pipelining.
+   ```cs
+     var pingTasks = new List<Task<TimeSpan>>();
+
+    for (var i = 0; i < 1000; i++)
+    {
+        pingTasks.Add(db.PingAsync());
+    }
+
+    await Task.WhenAll(pingTasks);
+   ```
    - Explicit pipelining with the IBatch API can be useful in scenarios where you want more control over the pipelining behavior or need to ensure that a specific set of commands is executed as a single contiguous block without interleaving with other commands. However, in many cases, relying on the asynchronous commands is sufficient and convenient.
      
    - Here's how command pipelining works:
