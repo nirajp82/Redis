@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aFB2JtNTP7YhD8JjclfM0ZQQ5x6wjBJAqYuehOIDTwsvpR3z+YrmH5lrDi937JcytFP0uAJgZulRKHC1yxdOzg==",
+  "dgSpecHash": "HFBlsAbro0E/XYfnBEfKRo903IDmcd6iBf/URRJHfNzhx1Jnh2OpSbey3IIVmKXHsmzblGUdm0SeYFJSFdTgbg==",
   "success": true,
   "projectFilePath": "C:\\Projects\\Redis\\RU102N\\Redis\\RedisFor.NETDevelopers\\ru102n-labs\\section_1\\section1.2\\section1.2.csproj",
   "expectedPackageFiles": [
@@ -17,11 +17,7 @@
     "C:\\Users\\Edu4K\\.nuget\\packages\\system.security.cryptography.protecteddata\\5.0.0\\system.security.cryptography.protecteddata.5.0.0.nupkg.sha512",
     "C:\\Users\\Edu4K\\.nuget\\packages\\system.security.permissions\\5.0.0\\system.security.permissions.5.0.0.nupkg.sha512",
     "C:\\Users\\Edu4K\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
-    "C:\\Users\\Edu4K\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512",
-    "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\Edu4K\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
+    "C:\\Users\\Edu4K\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
   "logs": []
 }
