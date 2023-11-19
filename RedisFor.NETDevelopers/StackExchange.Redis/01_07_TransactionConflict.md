@@ -2,58 +2,51 @@ In the provided code, two clients, Client A and Client B, are attempting to incr
 
 ```csharp
 // Client A
-using (var transactionA = database.CreateTransaction())
+var transactionA = database.CreateTransaction();
+// Step 1: ClientA retrieves the current value of the counter
+var getValueA = transactionA.StringGetAsync("counter");
+
+// Step 2: ClientA increments the counter
+transactionA.StringIncrementAsync("counter");
+
+// Step 3: ClientA executes the transaction
+bool committedA = transactionA.Execute();
+
+if (committedA)
 {
-    // Step 1: ClientA retrieves the current value of the counter
-    var getValueA = transactionA.StringGetAsync("counter");
-
-    // Simulate a delay to allow ClientB to execute its transaction concurrently
-    Thread.Sleep(100); // Sleep for 100 milliseconds
-
-    // Step 2: ClientA increments the counter
-    transactionA.StringIncrementAsync("counter");
-
-    // Step 3: ClientA executes the transaction
-    bool committedA = transactionA.Execute();
-
-    if (committedA)
-    {
-        Console.WriteLine($"Counter incremented by Client A!");
-    }
-    else
-    {
-        Console.WriteLine($"Transaction for Client A failed. Retry or handle accordingly.");
-    }
+    Console.WriteLine($"Counter incremented by Client A!");
+}
+else
+{
+    Console.WriteLine($"Transaction for Client A failed. Retry or handle accordingly.");
 }
 
 // Client B
-using (var transactionB = database.CreateTransaction())
+var transactionB = database.CreateTransaction();
+// Step 4: ClientB retrieves the current value of the counter
+var getValueB = transactionB.StringGetAsync("counter");
+
+// Step 5: ClientB increments the counter
+transactionB.StringIncrementAsync("counter");
+
+// Step 6: ClientB executes the transaction
+bool committedB = transactionB.Execute();
+
+if (committedB)
 {
-    // Step 4: ClientB retrieves the current value of the counter
-    var getValueB = transactionB.StringGetAsync("counter");
-
-    // Step 5: ClientB increments the counter
-    transactionB.StringIncrementAsync("counter");
-
-    // Step 6: ClientB executes the transaction
-    bool committedB = transactionB.Execute();
-
-    if (committedB)
-    {
-        Console.WriteLine($"Counter incremented by Client B!");
-    }
-    else
-    {
-        Console.WriteLine($"Transaction for Client B failed. Retry or handle accordingly.");
-    }
+    Console.WriteLine($"Counter incremented by Client B!");
 }
+else
+{
+    Console.WriteLine($"Transaction for Client B failed. Retry or handle accordingly.");
+}
+
 ```
 
 Now, let's break down the steps, including the concept of watch:
 
 1. **Client A:**
    - **Step 1:** Initiates a transaction and retrieves the current value of the counter using `var getValueA = transactionA.StringGetAsync("counter");`.
-   - **Simulate Delay:** Introduces a delay (e.g., 100 milliseconds) to simulate concurrent execution with Client B.
    - **Step 2:** Increments the counter within the transaction using `transactionA.StringIncrementAsync("counter");`.
    - **Step 3:** Executes the transaction with `bool committedA = transactionA.Execute();`. If successful, Client A prints a success message; otherwise, it handles the failure.
 
