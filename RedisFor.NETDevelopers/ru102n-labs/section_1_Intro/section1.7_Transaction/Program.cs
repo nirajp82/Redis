@@ -43,5 +43,7 @@ class Program
             Console.WriteLine($"Counter incremented by {name}!");
         else
             Console.WriteLine($"Transaction for {name} failed. Retry or handle accordingly.");
+
+        connMuxer.Close();
     }
 }

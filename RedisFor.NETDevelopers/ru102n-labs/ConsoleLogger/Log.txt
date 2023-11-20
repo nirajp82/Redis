@@ -1,0 +1,219 @@
+info: RedisLogger[0]
+      00:23:39.4755: Connecting (async) on .NET 7.0.14 (StackExchange.Redis: v2.6.70.49541)
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:39.8201: localhost:6379
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:39.8410: localhost:6379/Interactive: Connecting...
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:39.8799: localhost:6379: BeginConnectAsync
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:39.9915: 1 unique nodes specified (with tiebreaker)
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.0007: localhost:6379: OnConnectedAsync init (State=Connecting)
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.0019: Allowing 1 endpoint(s) 00:00:05 to respond...
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.0051: Awaiting 1 available task completion(s) for 5000ms, IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=2,Free=32765,Min=4,Max=32767), POOL: (Threads=4,QueuedItems=1,CompletedItems=17)
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.1315: localhost:6379/Interactive: Connected
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.1362: localhost:6379: Server handshake
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.3788: localhost:6379: Setting client name: WINDOWS-0O46319(SE.Redis-v2.6.70.49541)
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4143: localhost:6379: Auto-configuring...
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4308: localhost:6379: Requesting tie-break (Key="__Booksleeve_TieBreak")...
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4337: localhost:6379/Interactive: Writing: GET __Booksleeve_TieBreak
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4351: localhost:6379: Sending critical tracer (handshake): ECHO
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4352: localhost:6379/Interactive: Writing: ECHO
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4353: localhost:6379: Flushing outbound buffer
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4354: localhost:6379: OnEstablishingAsync complete
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4354: localhost:6379: Starting read
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4571: localhost:6379: Auto-configured (CONFIG) read-only replica: true
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4576: localhost:6379: Auto-configured (CONFIG) databases: 16
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4617: localhost:6379: Auto-configured (INFO) role: primary
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4625: localhost:6379: Auto-configured (INFO) version: 7.2.3
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4637: localhost:6379: Auto-configured (INFO) server-type: standalone
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4648: Response from localhost:6379/Interactive / GET __Booksleeve_TieBreak: (null)
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4658: Response from localhost:6379/Interactive / ECHO: BulkString: 16 bytes
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4677: localhost:6379: OnConnectedAsync completed (From command: ECHO)
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4721: All 1 available tasks completed cleanly, IOCP: (Busy=0,Free=1000,Min=1,Max=1000), WORKER: (Busy=1,Free=32766,Min=4,Max=32767), POOL: (Threads=5,QueuedItems=0,CompletedItems=54)
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4729: Endpoint summary:
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4737:   localhost:6379: Endpoint is (Interactive: ConnectedEstablished, Subscription: ConnectedEstablished)
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4738: Task summary:
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4740:   localhost:6379: Returned with success as Standalone primary (Source: From command: ECHO)
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4791: Election summary:
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4794:   Election: localhost:6379 had no tiebreaker set
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4794:   Election: Single primary detected: localhost:6379
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4794: localhost:6379: Clearing as RedundantPrimary
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4799: Endpoint Summary:
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4814:   localhost:6379: Standalone v7.2.3, primary; 16 databases; keep-alive: 00:01:00; int: ConnectedEstablished; sub: ConnectedEstablished, 1 active
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4845:   localhost:6379: int ops=10, qu=0, qs=0, qc=0, wr=0, socks=1; sub ops=3, qu=0, qs=0, qc=0, wr=0, subs=1, socks=1
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4925:   localhost:6379: Circular op-count snapshot; int: 0+10=10 (1.00 ops/s; spans 10s); sub: 0+3=3 (0.30 ops/s; spans 10s)
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.4932: Sync timeouts: 0; async timeouts: 0; fire and forget: 0; last heartbeat: -1s ago
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.5056: Starting heartbeat...
+info: RedisLogger[0]
+
+
+info: RedisLogger[0]
+      00:23:40.5081: Total connect time: 1,033 ms
+info: RedisLogger[0]
+

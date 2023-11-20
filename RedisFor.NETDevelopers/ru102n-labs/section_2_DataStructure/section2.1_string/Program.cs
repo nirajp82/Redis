@@ -73,3 +73,4 @@ await AppendString();
 await Increment();
 await Expiration();
 Conditional();
+muxer.Close();

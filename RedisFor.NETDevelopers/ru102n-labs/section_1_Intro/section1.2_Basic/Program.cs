@@ -8,3 +8,4 @@ var muxer = ConnectionMultiplexer.Connect(new ConfigurationOptions
 var db = muxer.GetDatabase();
 var res = db.Ping();
 Console.WriteLine($"The ping took: {res.TotalMilliseconds} ms");
+muxer.Close();

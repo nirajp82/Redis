@@ -51,3 +51,4 @@ async Task Batch()
 await UnPipelined(); //1000 un - pipelined commands took: 1705ms to execute
 await Pipelined(); //1000 automatically pipelined tasks took: 18ms to execute, first result: 00:00:00.0101917
 await Batch(); //1000 batched commands took: 26ms to execute, first result: 00:00:00.0074689
+muxer.Close();
