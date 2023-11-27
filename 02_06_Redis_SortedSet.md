@@ -10,6 +10,89 @@ In Redis, a Sorted Set is a data structure that combines the features of a set a
 
 * The sorted sets also provide the ability to create a union, intersection and difference results from a number of other sets and sorted sets. The Difference operator was added in Redis 6.2 as the ZDIFF command.
 
+
+**Introduction**
+
+Sorted sets are a type of data structure that stores elements in a sorted order. They are useful for storing collections of elements that need to be accessed in a sorted order, such as lists of users or scores.
+
+**Populating Sorted Sets**
+
+To populate a sorted set, you can use the `SortedSetAdd` method. This method takes two arguments: the name of the sorted set and an array of `SortedSetEntry` objects. A `SortedSetEntry` object has two properties: `Member` and `Score`. The `Member` property is the name of the element to add to the sorted set, and the `Score` property is the score of the element.
+
+**Checking Score and Rank**
+
+To check the score of an element in a sorted set, you can use the `SortedSetScore` method. This method takes two arguments: the name of the sorted set and the name of the element.
+
+To check the rank of an element in a sorted set, you can use the `SortedSetRank` method. This method takes three arguments: the name of the sorted set, the name of the element, and an `Order` object. The `Order` object can be either `Ascending` or `Descending`.
+
+**Range Queries**
+
+There are three ways to query members from a sorted set:
+
+* **By rank:** This is the default method for ranges with sorted sets. You can use the `SortedSetRangeByRank` method to range over a sorted set by rank.
+
+* **By score:** You can use the `SortedSetRangeByScore` method to range over a sorted set by score.
+
+* **By lex:** Lexicographic ordering is used when all the scores within a sorted set are set to the same score, traditionally 0. You can use the `SortedSetRangeByValue` method to range over a sorted set by lex.
+
+**Combining Sorted Sets**
+
+You can combine sorted sets together to help you answer more interesting questions. For example, you can use the `SortedSetCombineWithScores` method to find the intersection of two sorted sets.
+
+**Example**
+
+The following example shows how to use sorted sets to store a list of users and their scores. The example then shows how to query the sorted set to find the three most recently active users and then determine the rank order of those three by high score.
+
+```c#
+var db = ConnectionMultiplexer.Connect("redis").GetDatabase();
+
+// Populate the sorted sets
+db.SortedSetAdd("users:age",
+    new SortedSetEntry[]
+    {
+        new("User:1", 20),
+        new("User:2", 23),
+        new("User:3", 18),
+        new("User:4", 35),
+        new("User:5", 55),
+        new("User:6", 62)
+    });
+
+db.SortedSetAdd("users:lastAccess",
+    new SortedSetEntry[]
+    {
+        new("User:1", 1648483867),
+        new("User:2", 1658074397),
+        new("User:3", 1659132660),
+        new("User:4", 1652082765),
+        new("User:5", 1658087415),
+        new("User:6", 1656530099)
+    });
+
+db.SortedSetAdd("users:highScores",
+    new SortedSetEntry[]
+    {
+        new("User:1", 10),
+        new("User:2", 55),
+        new("User:3", 36),
+        new("User:4", 25),
+        new("User:5", 21),
+        new("User:6", 44)
+    });
+
+// Check the score of a member
+var user3HighScore = db.SortedSetScore("users:highScores", "User:3");
+Console.WriteLine($"User:3 High Score: {user3HighScore}");
+
+// Check the rank of a member
+var user2Rank = db.SortedSetRank("users:highScores", "User:2", Order.Descending);
+Console.WriteLine($"User:2 Rank: {user2Rank}");
+
+// Range queries
+var topThreeScores = db.SortedSetRangeByRank("users:highScores", 0, 2, Order.Descending);
+Console.WriteLine($"Top three: {string.Join(", ", topThree
+```
+
 ### Use Cases
  Let's go through the commands for building a priority queue and a leaderboard using Redis Sorted Sets, along with explanations for each command:
 
