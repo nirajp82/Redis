@@ -44,53 +44,33 @@ You can combine sorted sets together to help you answer more interesting questio
 The following example shows how to use sorted sets to store a list of users and their scores. The example then shows how to query the sorted set to find the three most recently active users and then determine the rank order of those three by high score.
 
 ```c#
-var db = ConnectionMultiplexer.Connect("redis").GetDatabase();
+db.SortedSetAdd(userHighScoreSet,
+        new SortedSetEntry[]
+        {
+            new("User:1", 10),
+            new("User:2", 55),
+            new("User:3", 36),
+            new("User:4", 25),
+            new("User:5", 21),
+            new("User:6", 44)
+        });
 
-// Populate the sorted sets
-db.SortedSetAdd("users:age",
-    new SortedSetEntry[]
-    {
-        new("User:1", 20),
-        new("User:2", 23),
-        new("User:3", 18),
-        new("User:4", 35),
-        new("User:5", 55),
-        new("User:6", 62)
-    });
+var FetchByScoreAsync = async () => {
+    var user3Score = await db.SortedSetScoreAsync(userHighScoreSet, "User:3");
+    Console.WriteLine($"User:3 Score: {user3Score}");//User:3 Score: 36
+};
 
-db.SortedSetAdd("users:lastAccess",
-    new SortedSetEntry[]
-    {
-        new("User:1", 1648483867),
-        new("User:2", 1658074397),
-        new("User:3", 1659132660),
-        new("User:4", 1652082765),
-        new("User:5", 1658087415),
-        new("User:6", 1656530099)
-    });
+var FetchByRank = () =>
+{
+    var user2Rank = db.SortedSetRank(userHighScoreSet, "User:2", Order.Descending);
+    Console.WriteLine($"User:2 Rank: {user2Rank}"); //User:2 Rank: 0    
+};
 
-db.SortedSetAdd("users:highScores",
-    new SortedSetEntry[]
-    {
-        new("User:1", 10),
-        new("User:2", 55),
-        new("User:3", 36),
-        new("User:4", 25),
-        new("User:5", 21),
-        new("User:6", 44)
-    });
-
-// Check the score of a member
-var user3HighScore = db.SortedSetScore("users:highScores", "User:3");
-Console.WriteLine($"User:3 High Score: {user3HighScore}");
-
-// Check the rank of a member
-var user2Rank = db.SortedSetRank("users:highScores", "User:2", Order.Descending);
-Console.WriteLine($"User:2 Rank: {user2Rank}");
-
-// Range queries
-var topThreeScores = db.SortedSetRangeByRank("users:highScores", 0, 2, Order.Descending);
-Console.WriteLine($"Top three: {string.Join(", ", topThree
+var FetchByRankAsync = async () =>
+{
+    var topThreeScores = await db.SortedSetRangeByRankAsync(userHighScoreSet, 0, 2, Order.Descending);
+    Console.WriteLine($"Top three: {string.Join(", ", topThreeScores)}");//Top three: User:2, User:6, User:3
+};
 ```
 
 ### Use Cases
