@@ -1,6 +1,6 @@
 # Redis Streams Overview
 
-Redis Streams are an append-only log-like data structure designed for enqueuing messages from producers to be consumed by consumers in your application. They offer a powerful data structure with a rich feature set. For a comprehensive understanding of how and why to use Redis Streams, you can refer to the course "RU202: Redis Streams."
+Redis Streams are an append-only log-like data structure designed for enqueuing messages from producers to be consumed by consumers in your application. They offer a powerful data structure with a rich feature set. For a comprehensive understanding of how and why to use Redis Streams, you can refer to the course "RU202: Redis Streams." (https://university.redis.com/courses/ru202/)
 
 ## Using Redis Streams in .NET with StackExchange.Redis
 
