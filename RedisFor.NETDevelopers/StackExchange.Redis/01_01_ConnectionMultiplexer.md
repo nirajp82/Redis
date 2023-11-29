@@ -59,8 +59,12 @@ ConnectionMultiplexer hides away the details of multiple servers. Because the Co
    - Blocking commands, like stream reads, cannot be used as they would block the interactive connection.
      - Blocking commands is an operations that wait for specific conditions, like waiting for a certain element to be added to a list or waiting for a specific score in a sorted set or waiting for new entries to be added to a Redis stream.
    - It prevents other threads or tasks from using the same connection concurrently. This limitation can impact the overall concurrency and responsiveness of the application.
+   - In Redis, the XREAD and XREADGROUP commands support a blocking paradigm. This means that when you issue one of these commands, the client may block and wait for new messages to arrive in the stream. This is typically     done using the BLOCK option along with a timeout.
+
+    However, due to the multiplexed nature of StackExchange.Redis, there is no mechanism to use these blocking paradigms (block timer in conjunction with `XREAD` and `XREADGROUP`). In a multiplexed environment, multiple commands can be issued simultaneously on the same connection, and blocking would interfere with this behavior. This means that we cannot make a call to these commands and have them block for a specified time, waiting for new messages using StackExchange.Redis in .net.
+
   
-3. **Transaction Differences:**
+4. **Transaction Differences:**
    - Transactions operate differently, with limited support for watches, and commands aren't dispatched to Redis from redis client until execution time (Until client executes the transaction.commit()).
 
 ```cs
