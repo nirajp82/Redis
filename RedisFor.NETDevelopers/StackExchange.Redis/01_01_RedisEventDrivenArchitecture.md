@@ -1,4 +1,6 @@
-Redis, a popular in-memory data structure store, employs an event-driven architecture to handle high volumes of concurrent requests with low latency and high scalability. This architecture enables Redis to efficiently process commands, manage connections, and distribute responses among multiple clients.
+Redis, a popular in-memory data structure store, employs an event-driven architecture to handle high volumes of concurrent requests with low latency and high scalability. In the context of Redis, the event-driven architecture is implemented through an event loop that continuously listens for and processes events.
+
+This architecture enables Redis to efficiently process commands, manage connections, and distribute responses among multiple clients.
 
 **Core Concepts of Redis's Event-Driven Architecture**
 
@@ -8,9 +10,18 @@ Redis, a popular in-memory data structure store, employs an event-driven archite
 
 3. **Multiplexers:** Multiplexers play a crucial role in Redis's event-driven architecture. They manage connections to the Redis server, buffering commands, and distributing responses. This streamlines communication between clients and the Redis server.
 
-4. **Event Loop:** The Redis server's event loop continuously processes events, including incoming commands, connection requests, and response delivery. This ensures that requests are handled in a timely manner.
+4. **Event Loop:** The Redis server's event loop continuously processes events, including incoming commands, connection requests, and response delivery. This ensures that requests are handled in a timely manner. Redis server has a single-threaded event loop that listens for various events such as client connections, incoming commands, and timer events.
 
-5. **Pub/Sub Mechanism:** Redis's publish-subscribe (pub/sub) mechanism allows clients to subscribe to channels and receive real-time notifications when events or messages are published on those channels. This enables efficient event-driven communication.
+   For ex: Clients send commands to the Redis server. Each command triggers an event in the event loop.
+
+     ```plaintext
+     Client A: SET key1 value1
+     Client B: GET key2
+     Client C: INCR counter
+     ```
+   - The event loop processes these events one at a time. It doesn't handle multiple events simultaneously due to Redis being single-threaded.
+
+6. **Pub/Sub Mechanism:** Redis's publish-subscribe (pub/sub) mechanism allows clients to subscribe to channels and receive real-time notifications when events or messages are published on those channels. This enables efficient event-driven communication.
 
 **Example of Event-Driven Communication with Redis**
 
