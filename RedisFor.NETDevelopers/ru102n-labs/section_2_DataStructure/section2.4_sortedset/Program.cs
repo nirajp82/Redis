@@ -62,7 +62,6 @@ var PopulateAsync = async () =>
 
     await Task.WhenAll(tsk1, tsk2, tsk3, tsk4);
 };
-
 var FetchByScoreAsync = async () =>
 {
     var user3Score = await db.SortedSetScoreAsync(userHighScoreSet, "User:3");
