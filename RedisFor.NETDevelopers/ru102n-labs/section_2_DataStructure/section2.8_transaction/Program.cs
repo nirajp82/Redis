@@ -1,8 +1,8 @@
 ﻿using StackExchange.Redis;
 
-var muxer = ConnectionMultiplexer.Connect("localhost");
+var muxer = await ConnectionMultiplexer.ConnectAsync(new ConfigurationOptions 
+{
+    EndPoints = { "localhost:6379" }
+});
+
 var db = muxer.GetDatabase();
-
-// TODO for Coding Challenge Start here on starting-point branch
-
-// end coding challenge
