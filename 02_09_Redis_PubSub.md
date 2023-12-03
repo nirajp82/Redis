@@ -144,7 +144,7 @@ var basicSendTask = Task.Run(async () =>
 
 **Subscribing to Channel Patterns**
 
-You can also subscribe to channel patterns using simple glob patterns. For example, to subscribe to all channels that start with the prefix `pattern:`, you would use the pattern `pattern:*`.
+You can also subscribe to channel patterns using simple glob patterns. For example, to subscribe to all channels that start with the prefix `pattern:`, you would use the pattern `pattern:*`,then whenever you send any message to a channel matching that pattern, it will be picked up. So let's also add a producer that will publish to channels matching that pattern with random GUIDs.
 
 ```c#
 var patternSendTask = Task.Run(async () =>
