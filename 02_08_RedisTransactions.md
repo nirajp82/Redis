@@ -18,53 +18,68 @@ In Redis, transactions allow you to group multiple commands together and ensure 
 
 - You cannot watch keys in StackExchange.Redis transactions. But: you can add conditions to the transaction that will prevent the transaction from moving forward in certain conditions.
 
+### Redis Transactions in StackExchange.Redis:
 
-### Working with Transactions:
+1. **Execution of Commands in Isolation:**
+   - All commands within a Redis transaction are sent to Redis at the same time, ensuring atomicity.
+
+2. **Initialization of a Simple Transaction:**
+   - The code initializes a Redis transaction using `db.CreateTransaction()`.
+
+3. **Example of a Simple Transaction:**
+   - The example transaction involves adding a person hash to Redis with fields such as name, age, and postal code.
+   - Secondary indexes are updated along with the hash to maintain consistency.
 
 ```csharp
-// Create a transaction using the GetDatabase method.
 var transaction = db.CreateTransaction();
 
-// Add multiple commands to the transaction.
-transaction.StringSetAsync("key1", "value1");
-transaction.StringSetAsync("key2", "value2");
-transaction.StringIncrementAsync("counter");
-
-// Watch a key to enable optimistic concurrency control.
-transaction.WatchAsync("watchedKey");
-
-// If the watched key changes before the transaction is executed, the transaction will fail.
-// You can check for this condition and handle it accordingly.
-
-// Execute the transaction.
-bool success = await transaction.ExecuteAsync();
-
-// Check if the transaction was successful.
-if (success)
+transaction.HashSetAsync("person:1", new HashEntry[]
 {
-    // Transaction executed successfully.
-}
-else
-{
-    // Transaction failed, handle accordingly (e.g., retry, log, etc.).
-}
+    new ("name", "Steve"),
+    new ("age", 32),
+    new ("postal_code", "32999")
+});
+// Additional secondary index updates
+// ...
+
+var success = transaction.Execute();
+Console.WriteLine($"Transaction Successful: {success}");
 ```
 
-### Benefits and Considerations:
+4. **Adding Conditions to a Transaction:**
+   - Conditions can be added to a transaction to ensure certain criteria are met before execution.
+   - The example involves incrementing a person's age but only if the current age is 32.
 
-1. **Atomicity:**
-   - Transactions in StackExchange.Redis ensure that a series of commands are executed atomically, maintaining consistency in the database.
+```csharp
+transaction.AddCondition(Condition.HashEqual("person:1", "age", 32));
+transaction.HashIncrementAsync("person:1", "age");
+transaction.SortedSetIncrementAsync("person:age", "person:1", 1);
 
-2. **Isolation:**
-   - The commands within a transaction are isolated from other Redis commands, providing a consistent view of the data during the transaction.
+success = transaction.Execute();
+Console.WriteLine($"Transaction Successful: {success}");
+```
 
-3. **Sequential Execution:**
-   - All commands in a transaction are executed sequentially, avoiding race conditions and ensuring predictable results.
+5. **Failed Transaction Conditions:**
+   - Transactions may fail if the watched key is modified by another command during transaction creation.
+   - Conditions set in the transaction can also cause failure if they are not met.
 
-4. **Watched Keys:**
-   - Watching keys allows you to implement optimistic concurrency control. If a watched key is modified by another client, the transaction is terminated to prevent unintended changes.
+```csharp
+transaction.AddCondition(Condition.HashEqual("person:1", "age", 31));
+transaction.HashIncrementAsync("person:1", "age");
+transaction.SortedSetIncrementAsync("person:age", "person:1", 1);
+success = transaction.Execute();
+Console.WriteLine($"Transaction Successful: {success}");
+```
 
-5. **Error Handling:**
-   - It's important to handle the success or failure of a transaction appropriately. If a transaction fails, you may need to retry it, log the failure, or take other corrective actions.
+### Important Notes:
 
-In summary, Redis transactions in StackExchange.Redis provide a mechanism to group commands together, ensuring atomic and isolated execution. Watched keys add a level of concurrency control, making it possible to handle cases where external changes might interfere with the transaction. Proper error handling is crucial to manage the outcome of the transaction execution.
+- **Watching Keys:**
+  - Due to the multiplexed nature of StackExchange.Redis, traditional key-watching is not practical. However, conditions can be used for similar purposes.
+
+- **Transaction Failure:**
+  - If the watched key is modified by another command before transaction execution, or if a condition is not satisfied, the transaction will fail.
+
+- **Response to Failed Transactions:**
+  - The `Execute()` method returns `false` to indicate that the transaction did not succeed.
+
+These examples provide a basic understanding of using Redis transactions with StackExchange.Redis in a C# environment, including the addition of conditions for ensuring data consistency.
