@@ -88,7 +88,7 @@ StackExchange.Redis guarantees that messages from the same connection will be pr
 
 Pub/Sub is a powerful and versatile messaging pattern that can be used to solve a variety of problems. StackExchange.Redis makes it easy to use Pub/Sub in your .NET applications.
 
-Sure, here is a summary of the Hands-On with Redis Pub/Sub:
+## Hands-On with Redis Pub/Sub:
 
 **Getting an ISubscriber**
 
