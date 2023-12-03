@@ -123,7 +123,13 @@ await subscriber.SubscribeAsync("test-channel", (channel, value) =>
 ```
 
 **Creating a Producer**
-
+Creating a cancellation token source so we can cut off our producer tasks when it's time, so let's also initialize that.
+```c#
+    var subscriber = muxer.GetSubscriber();
+    var cancellationTokenSource = new CancellationTokenSource();
+    var token = cancellationTokenSource.Token;
+ ```
+   
 The producer is responsible for sending messages to the channel. To create a producer, simply use the `PublishAsync` method of the `IDatabase` instance.
 
 ```c#
