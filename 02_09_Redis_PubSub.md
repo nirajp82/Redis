@@ -1,5 +1,3 @@
-Sure, here is an explanation of StackExchange.Redis Pub/Sub in .NET:
-
 **What is Pub/Sub?**
 
 Pub/Sub stands for publisher/subscriber. It is a messaging pattern that allows publishers to send messages to subscribers, without the subscribers needing to know who the publishers are. This makes Pub/Sub a very scalable and efficient way to communicate between different parts of an application.
