@@ -15,7 +15,11 @@ To subscribe to a channel, you can use the `Subscribe()` method of the `ISubscri
 ```c#
 using StackExchange.Redis;
 
-var redis = ConnectionMultiplexer.Connect("localhost");
+var redis = await ConnectionMultiplexer.ConnectAsync(new ConfigurationOptions
+{
+    EndPoints = { "localhost:6379" }
+});
+
 var subscriber = redis.GetSubscriber();
 
 subscriber.Subscribe("mychannel", (channel, message) =>
@@ -31,7 +35,11 @@ To publish a message, you can use the `Publish()` method of the `ConnectionMulti
 ```c#
 using StackExchange.Redis;
 
-var redis = ConnectionMultiplexer.Connect("localhost");
+var redis = await ConnectionMultiplexer.ConnectAsync(new ConfigurationOptions
+{
+    EndPoints = { "localhost:6379" }
+});
+
 var database = redis.GetDatabase();
 
 database.Publish("mychannel", "Hello, world!");
