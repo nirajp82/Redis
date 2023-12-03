@@ -11,8 +11,13 @@ In Redis, transactions allow you to group multiple commands together and ensure 
 3. **Sequential Execution:**
    - Unlike `IBatch`, all commands within a transaction are guaranteed to be executed sequentially. This ensures that the effects of each command are visible to subsequent commands within the same transaction.
 
-4. **Watched Keys:**
-   - Redis transactions can watch one or more keys. If any of the watched keys are modified by another client before the transaction is executed, the transaction is terminated, and its commands are not applied. This allows for a form of optimistic concurrency control.
+
+#### Redis transactions operate in a similar way to the way that Batches operate with two big caveats.
+
+- All commands under a Redis Transaction will be sent to Redis at the same time, as opposed to traditional transactions where commands can be sent in multiple round trips.
+
+- You cannot watch keys in StackExchange.Redis transactions. But: you can add conditions to the transaction that will prevent the transaction from moving forward in certain conditions.
+
 
 ### Working with Transactions:
 
