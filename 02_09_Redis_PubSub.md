@@ -102,7 +102,7 @@ var subscriber = muxer.GetSubscriber();
 
 When subscribing to a channel, you can choose to process messages sequentially or concurrently.
 
-* **Sequential:** If you need messages to be processed in the order they were sent, you should use sequential delivery. To do this, do not pass a delegate to the `Subscribe` method.
+* **Sequential:** If you need messages to be processed in the order they were sent, you should use sequential delivery. To do this, do not pass a delegate to the `Subscribe` method. If you do not pass a delegate to the Subscribe method, it produces a channel object that you can listen to messages on.
 
 ```c#
 var channel = await subscriber.SubscribeAsync("test-channel");
