@@ -6,7 +6,7 @@ Pub/Sub stands for publisher/subscriber. It is a messaging pattern that allows p
 
 **How does Pub/Sub work in StackExchange.Redis?**
 
-StackExchange.Redis supports Pub/Sub by using two connections to Redis. The first connection is used for interactive commands, such as setting and getting keys. The second connection is used for Pub/Sub messages. When a subscriber subscribes to a channel, Redis flips the connection over to subscriber mode. This means that the connection can only be used to receive Pub/Sub messages. This helps to ensure that Pub/Sub messages are not interrupted by other traffic on the connection.
+StackExchange.Redis supports Pub/Sub by using two connections to Redis. The first connection is used for interactive commands, such as setting and getting keys. The second connection is used for Pub/Sub messages. When a subscriber subscribes to a channel, Redis flips the connection over to subscriber mode. This means that the connection can only be used to receive Pub/Sub messages. This helps to ensure that Pub/Sub messages are not interrupted by other traffic on the connection. The separation of interactive and subscriber connections in StackExchange.Redis is designed to prevent interference between regular Redis commands and Pub/Sub operations. The dedicated subscriber connection allows for efficient and uninterrupted message handling without being affected by other non-Pub/Sub traffic.
 
 **How to subscribe to a channel**
 
@@ -80,11 +80,9 @@ In most practical scenarios, this non-deterministic ordering across connections 
 
 For example, if you have a real-time chat application where the order of messages is crucial, you can use a message queue to store messages in the order they were sent and then process them from the queue in the correct order.
 
-Summary:
+Summary of "Ordering of Pub/Sub messages":
 
 StackExchange.Redis guarantees that messages from the same connection will be processed sequentially, but it does not guarantee that messages from different connections will be processed in any particular order. This non-deterministic ordering can be managed using additional mechanisms if strict message ordering is required.
-
-
 
 
 e same channel, each subscriber will receive the messages in the same order. However, StackExchange.Redis does not guarantee that messages from different connections will be processed in any particular order.
