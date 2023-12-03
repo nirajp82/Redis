@@ -84,9 +84,93 @@ Summary of "Ordering of Pub/Sub messages":
 
 StackExchange.Redis guarantees that messages from the same connection will be processed sequentially, but it does not guarantee that messages from different connections will be processed in any particular order. This non-deterministic ordering can be managed using additional mechanisms if strict message ordering is required.
 
-
-e same channel, each subscriber will receive the messages in the same order. However, StackExchange.Redis does not guarantee that messages from different connections will be processed in any particular order.
-
 **Conclusion**
 
 Pub/Sub is a powerful and versatile messaging pattern that can be used to solve a variety of problems. StackExchange.Redis makes it easy to use Pub/Sub in your .NET applications.
+
+Sure, here is a summary of the Hands-On with Redis Pub/Sub:
+
+**Getting an ISubscriber**
+
+To work with Redis Pub/Sub, you need to get an instance of an `ISubscriber` object. You can do this by calling the `ConnectionMultiplexer.GetSubscriber()` method.
+
+```c#
+var subscriber = muxer.GetSubscriber();
+```
+
+**Sequential vs Concurrent Message Processing**
+
+When subscribing to a channel, you can choose to process messages sequentially or concurrently.
+
+* **Sequential:** If you need messages to be processed in the order they were sent, you should use sequential delivery. To do this, do not pass a delegate to the `Subscribe` method.
+
+```c#
+var channel = await subscriber.SubscribeAsync("test-channel");
+
+channel.OnMessage(msg =>
+{
+    Console.WriteLine($"Sequentially received: {msg.Message} on channel: {msg.Channel}");
+});
+```
+
+* **Concurrent:** To process messages concurrently, pass a delegate to the `Subscribe` method. The delegate takes two arguments: the channel the message was sent to, and the message itself.
+
+```c#
+await subscriber.SubscribeAsync("test-channel", (channel, value) =>
+{
+    Console.WriteLine($"Received: {value} on channel: {channel}");
+});
+```
+
+**Creating a Producer**
+
+The producer is responsible for sending messages to the channel. To create a producer, simply use the `PublishAsync` method of the `IDatabase` instance.
+
+```c#
+var basicSendTask = Task.Run(async () =>
+{
+    var i = 0;
+    while (!token.IsCancellationRequested)
+    {
+        await db.PublishAsync("test-channel", i++);
+        await Task.Delay(1000);
+    }
+});
+```
+
+**Subscribing to Channel Patterns**
+
+You can also subscribe to channel patterns using simple glob patterns. For example, to subscribe to all channels that start with the prefix `pattern:`, you would use the pattern `pattern:*`.
+
+```c#
+var patternSendTask = Task.Run(async () =>
+{
+    var i = 0;
+    while (!token.IsCancellationRequested)
+    {
+        await db.PublishAsync($"pattern:{Guid.NewGuid()}", i++);
+        await Task.Delay(1000);
+    }
+});
+```
+
+**Unsubscribing**
+
+To unsubscribe from a channel, call the `Unsubscribe` method on the channel object.
+
+```c#
+channel.UnsubscribeAsync();
+```
+
+To unsubscribe from a subscriber, call the `Unsubscribe` method on the subscriber object. This will unsubscribe for all channels and delegates listening to that subscriber.
+
+```c#
+subscriber.UnsubscribeAsync("test-channel");
+```
+
+To unsubscribe from everything, call the `UnsubscribeAll` method on the subscriber object.
+
+```c#
+subscriber.UnsubscribeAllAsync();
+```
+
