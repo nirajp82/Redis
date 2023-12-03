@@ -147,15 +147,23 @@ var basicSendTask = Task.Run(async () =>
 You can also subscribe to channel patterns using simple glob patterns. For example, to subscribe to all channels that start with the prefix `pattern:`, you would use the pattern `pattern:*`,then whenever you send any message to a channel matching that pattern, it will be picked up. So let's also add a producer that will publish to channels matching that pattern with random GUIDs.
 
 ```c#
-var patternSendTask = Task.Run(async () =>
+var patternSubscriberAsync = async () =>
+{
+    await subscriber.SubscribeAsync("MyGuidPattern:*", (channel, value) =>
+    {
+        Console.WriteLine($"Concurrent Received: {value} on channel: {channel}");
+    });
+};
+
+var patternProducerAsync = async () =>
 {
     var i = 0;
     while (!token.IsCancellationRequested)
     {
-        await db.PublishAsync($"pattern:{Guid.NewGuid()}", i++);
+        await db.PublishAsync($"MyGuidPattern:{Guid.NewGuid()}", $"My pattern pub sub message is :{i++}");
         await Task.Delay(1000);
     }
-});
+};
 ```
 
 **Unsubscribing**
