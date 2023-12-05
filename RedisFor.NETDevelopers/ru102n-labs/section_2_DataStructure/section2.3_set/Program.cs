@@ -39,6 +39,7 @@ var CheckMemberExists = async () =>
 {
     bool user6Offline = await db.SetContainsAsync(offlineUsersSet, "User:6");
     Console.WriteLine($"User:6 offline: {user6Offline}");
+};
 
 var Enumerate = async () =>
 {
