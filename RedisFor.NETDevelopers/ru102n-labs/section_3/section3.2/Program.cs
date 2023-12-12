@@ -14,7 +14,7 @@ builder.Services.AddDbContext<SalesContext>();
 builder.Services.AddHostedService<InitService>();
 
 // TODO Section 3.2 Step 1
-// call AddStackExchangeRedisCache here.
+// call A   here.
 
 // End Section 3.2 Step 1
 var app = builder.Build();
