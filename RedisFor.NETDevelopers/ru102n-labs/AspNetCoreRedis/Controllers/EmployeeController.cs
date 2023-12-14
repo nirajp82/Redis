@@ -22,12 +22,17 @@ namespace AspNetCoreRedis.Controllers
         }
 
         [HttpGet("all")]
-        [ProducesResponseType(typeof(IEnumerable<Employee>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IEnumerable<Object>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetEmployees()
         {
-            var employees = await _salesDb.Employees.ToListAsync();
+            var employees = await _salesDb.Employees.Select(emp =>
+                            new
+                            {
+                                employee = emp,
+                                sumSales = emp.Sales.Sum(s => s.Total)
+                            }).OrderByDescending(e => e.sumSales).ToListAsync();
             if (employees?.Any() == true)
                 return Ok(employees);
             else
