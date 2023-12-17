@@ -18,6 +18,5 @@ namespace section3._3.Models
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
-
     }
 }

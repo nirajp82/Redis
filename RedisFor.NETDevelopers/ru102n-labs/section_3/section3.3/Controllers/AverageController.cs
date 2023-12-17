@@ -16,7 +16,6 @@ namespace section3._3.Controllers
     {
         private SalesContext _salesContext = new SalesContext();
 
-
         [ResponseType(typeof(Dictionary<string,double>))]
         public async Task<IHttpActionResult> GetAverage(int id)
         {
