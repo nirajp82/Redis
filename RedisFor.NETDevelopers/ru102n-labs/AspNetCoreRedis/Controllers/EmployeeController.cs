@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace AspNetCoreRedis.Controllers
 {
@@ -39,86 +40,116 @@ namespace AspNetCoreRedis.Controllers
                 return NoContent();
         }
 
-        //[HttpGet("top")]
-        //public async Task<Dictionary<string, object>> GetTopSalesperson()
-        //{
-        //    var stopwatch = Stopwatch.StartNew();
+        [HttpGet("top")]
+        [ProducesResponseType(typeof(Dictionary<string, string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetTopSalesperson()
+        {
+            var stopwatch = Stopwatch.StartNew();
+            string topEmpName = string.Empty;
+            string topEmpSales = string.Empty;
 
-        //    // TODO Section 3.2 step 4
-        //    // add cache check here
+            var topName = _cache.GetStringAsync("top:name");
+            var topSales = _cache.GetStringAsync("top:sales");
+            await Task.WhenAll(topName, topSales);
 
-        //    // end Section 3.2 step 4
+            if (!string.IsNullOrWhiteSpace(topName.Result) && !string.IsNullOrWhiteSpace(topSales.Result))
+            {
+                topEmpName = topName.Result;
+                topEmpSales = topSales.Result;
+            }
+            else
+            {
+                var topSalesperson = await _salesDb.Employees.Select(x => new
+                {
+                    Employee = x,
+                    sumSales = x.Sales.Sum(x => x.Total)
+                }).OrderByDescending(x => x.sumSales)
+                  .FirstAsync();
 
-        //    var topSalesperson = await _salesDb.Employees.Select(x => new
-        //    {
-        //        Employee = x,
-        //        sumSales = x.Sales
-        //        .Sum(x => x.Total)
-        //    }).OrderByDescending(x => x.sumSales)
-        //        .FirstAsync();
-        //    stopwatch.Stop();
+                stopwatch.Stop();
 
-        //    // TODO Section 3.2 step 3
-        //    // add cache insert here
+                topEmpName = topSalesperson.Employee.Name;
+                topEmpSales = topSalesperson.sumSales.ToString();
 
-        //    // End Section 3.2 step 3
+                var cacheOptions = new DistributedCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5),
+                };
+                var topNameInsert = _cache.SetStringAsync("top:name", topEmpName, cacheOptions);
+                var topSalesInsert = _cache.SetStringAsync("top:sales", topEmpSales, cacheOptions);
+                await Task.WhenAll(topSalesInsert, topNameInsert);
+            }
+            var result = new Dictionary<string, string>()
+                            {
+                                { "employee_name", topEmpName},
+                                { "sum_sales",  topEmpSales},
+                                { "time", stopwatch.ElapsedMilliseconds.ToString() }
+                            };
+            return Ok(result);
+        }
 
-        //    return new Dictionary<string, object>()
-        //{
-        //    { "sum_sales", topSalesperson.sumSales },
-        //    { "employee_name", topSalesperson.Employee.Name },
-        //    { "time", stopwatch.ElapsedMilliseconds }
-        //};
-        //}
+        [HttpGet("average/{empId}")]
+        [ProducesResponseType(typeof(Dictionary<string, double>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetAverage([FromRoute] int empId)
+        {
+            var stopwatch = Stopwatch.StartNew();
+            var key = $"employee:{empId}:avg";
+            var empAvg = await _cache.GetStringAsync(key) ?? "";
+            if (!string.IsNullOrWhiteSpace(empAvg))
+            {
+                stopwatch.Stop();
+            }
+            else
+            {
+                var avg = await _salesDb.Employees.Include(x => x.Sales)
+                            .Where(dbe => dbe.EmployeeId == empId)
+                            .Select(x => x.Sales.Average(dbs => dbs.Total))
+                            .FirstOrDefaultAsync();
+                await _cache.SetStringAsync(key, avg.ToString(CultureInfo.InvariantCulture),
+                     new DistributedCacheEntryOptions
+                     { SlidingExpiration = TimeSpan.FromMinutes(30) });
+                empAvg = avg.ToString();
+                stopwatch.Stop();
+            }
+            var result = new Dictionary<string, double>
+            {
+                {"average", double.Parse(empAvg) },
+                {"elapsed", stopwatch.ElapsedMilliseconds }
+            };
+            return Ok(result);
+        }
 
-        //[HttpGet("average/{id}")]
-        //public async Task<Dictionary<string, double>> GetAverage([FromRoute] int id)
-        //{
-        //    var stopwatch = Stopwatch.StartNew();
+        [HttpGet("totalSales")]
+        [ProducesResponseType(typeof(Dictionary<string, long>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GetTotalSales()
+        {
+            var stopwatch = Stopwatch.StartNew();
+            long totalSales = 0;
+            var cacheResult = await _cache.GetStringAsync("totalSales");
+            if (!string.IsNullOrWhiteSpace(cacheResult))
+            {
+                totalSales = long.Parse(cacheResult);
+                stopwatch.Stop();
+            }
+            else
+            {
+                totalSales = await _salesDb.Sales.SumAsync(dbs => dbs.Total);
+                await _cache.SetStringAsync("totalSales", totalSales.ToString(), new DistributedCacheEntryOptions
+                {
+                    AbsoluteExpiration = DateTime.Today.AddDays(1)
+                });
+                stopwatch.Stop();
+            }
 
-        //    // TODO Section 3.2 step 5
-        //    // add caching logic here
-
-        //    // end Section 3.2 step 5
-
-        //    var avg = await _salesDb.Employees.Include(x => x.Sales).Where(x => x.EmployeeId == id).Select(x => x.Sales.Average(y => y.Total)).FirstAsync();
-
-        //    // TODO Section 3.2 step 6
-        //    // add cache set here
-
-        //    // end Section 3.2 step 6
-
-        //    stopwatch.Stop();
-        //    return new Dictionary<string, double>
-        //{
-        //    { "average", avg },
-        //    { "elapsed", stopwatch.ElapsedMilliseconds }
-        //};
-        //}
-
-        //[HttpGet("totalSales")]
-        //public async Task<Dictionary<string, long>> GetTotalSales()
-        //{
-        //    var stopwatch = Stopwatch.StartNew();
-
-        //    // TODO Section 3.2 step 7
-        //    // add caching logic here
-
-        //    // end Section 3.2 step 7
-
-        //    var totalSales = await _salesDb.Sales.SumAsync(x => x.Total);
-
-        //    // TODO Section 3.2 step 8
-        //    // add cache set here
-
-        //    // end Section 3.2 step 8
-
-        //    stopwatch.Stop();
-        //    return new Dictionary<string, long>()
-        //{
-        //    { "Total Sales", totalSales },
-        //    { "elapsed", stopwatch.ElapsedMilliseconds }
-        //};
-        //}
+            var result = new Dictionary<string, long>()
+            {
+                { "Total Sales", totalSales },
+                { "elapsed", stopwatch.ElapsedMilliseconds }
+            };
+            return Ok(result);
+        }
     }
 }
