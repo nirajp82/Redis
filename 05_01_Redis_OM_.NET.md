@@ -59,6 +59,9 @@ public class Address
      - Decorates the class definition.
      - Defines storage type (JSON or Hashes).
      - Specifies key prefix and index name.
+     - In above example above,
+         - This will tell Redis OM that we want the Employee stored as a JSON document, that we want the prefix that the key-generator uses to be "Employee", and that the index name that Redis OM will use to index the employees will be simply "employees".
+         - This will make the Sale class be stored as JSON, however Redis OM will revert to its defaults for Index Naming and Prefix generation. In this case, the Index Name will simply be "sale-idx", and the prefix used will be the fully qualified class name of the model class. In this case that will be section5._1.Sale: but this will vary based on your namespace.
 
    - **RedisIdFieldAttribute:**:  If an ID is present, it is used; otherwise, Redis OM generates one using a strategy (such as ULID).
      - Marks the ID field for the model.
