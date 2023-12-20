@@ -53,3 +53,45 @@ Bloom Filters are commonly used in scenarios where memory is constrained, and qu
    In distributed systems, Bloom Filters can be used to reduce the number of unnecessary requests by quickly determining whether a specific item exists in a distributed data store.
 
 It's important to note that Bloom Filters have limitations, such as the possibility of false positives. Therefore, they are suitable for scenarios where occasional false positives are acceptable, and the emphasis is on saving space and improving query performance.
+
+### False Positive
+In the context of Bloom Filters and set membership tests, a "false positive" occurs when the filter incorrectly indicates that an element is a member of the set, even though it is not. In other words, the filter reports that an element is present, but in reality, it is not part of the set.
+
+Here's a simple example to illustrate false positives:
+
+1. **Creating a Bloom Filter:**
+   Let's say you create a Bloom Filter to check for membership of words in a dictionary. The filter is set up with a certain capacity and false positive rate.
+
+   ```python
+   # Example Bloom Filter (hypothetical)
+   bloom_filter = BloomFilter(capacity=1000, false_positive_rate=0.01)
+   ```
+
+2. **Adding Words to the Filter:**
+   You add several words from the dictionary to the Bloom Filter.
+
+   ```python
+   bloom_filter.add("apple")
+   bloom_filter.add("banana")
+   bloom_filter.add("cherry")
+   ```
+
+3. **Membership Test:**
+   Now, you want to check whether a word is in the dictionary using the Bloom Filter.
+
+   ```python
+   # Checking for membership
+   is_member_apple = bloom_filter.contains("apple")  # Should return True
+   is_member_orange = bloom_filter.contains("orange")  # May return True (false positive)
+   ```
+
+In this example, if the Bloom Filter reports `is_member_orange` as `True`, it would be a false positive. It means the filter mistakenly suggests that "orange" is in the dictionary, even though you didn't add it.
+
+**Explanation:**
+A false positive occurs because of the probabilistic nature of Bloom Filters. When adding elements to the filter, multiple hash functions are applied to generate positions in the filter array to set bits. During a membership test, if all the corresponding bits are set for a given element, the filter indicates that the element is probably in the set.
+
+However, due to collisions and the limited number of bits in the array, different elements may produce the same set of bit positions. This can lead to false positives, where an element that was not added to the filter produces the same bit positions as an element that was added, causing the filter to incorrectly indicate membership.
+
+While false positives are possible, false negatives (the filter incorrectly indicating an element is not in the set when it is) are not possible in a Bloom Filter. The trade-off is that the false positive rate can be controlled by adjusting the parameters of the Bloom Filter, such as the number of hash functions and the size of the filter array.
+
+
