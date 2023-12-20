@@ -72,7 +72,7 @@ Here's a simple example to illustrate false positives:
 3. **Membership Test:**
    Now, you want to check whether a word is in the dictionary using the Bloom Filter.
 
-```cs
+ ```csharp
 using StackExchange.Redis;
 
 class Program
@@ -101,6 +101,7 @@ class Program
         redis.Close();
     }
 }
+```
 
 In this example, if the Bloom Filter reports `is_member_orange` as `True`, it would be a false positive. It means the filter mistakenly suggests that "orange" is in the dictionary, even though you didn't add it.
 
