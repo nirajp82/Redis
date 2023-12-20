@@ -38,11 +38,15 @@ public class Sale
 public class Address
 {
     [Searchable]
-    public string? StreetAddress { get; set; }
+    public string? StreetAddress { get; set; 
+    
     [Indexed]
     public string? PostalCode { get; set; }
+
     [Indexed]
     public GeoLoc Location { get; set; }
+
+    ///For instance, if we wanted to index the ForwardingAddress in our Address field, we can by setting a cascade depth on that field to 1. This will prevent it from cascading deeper than just the scalar attributes beneath the address field:
     [Indexed(CascadeDepth = 1)]
     public Address? ForwardingAddress { get; set; }
 }
@@ -67,11 +71,14 @@ public class Address
      - Marks the ID field for the model.
      - Used during key generation at storage time.
      - Supports ID generation strategies, defaulting to ULID.
+     - Adding an Id field to your model is not strictly speaking necessary, but it's highly recommended that you have one. Without an ID field, you will have some restrictions on how you can update and delete your objects.
        
    - **IndexedAttribute:**
      - Marks fields for sorting (sortable) or querying.
      - Applicable to various data types (strings, enums, numbers, GeoLoc, and other classes).
      - Allows specifying the depth of the object tree to index or specific paths for searching.
+     - Indexing Scalar Values with Redis OM is really simple, all you need to do is mark the value as Indexed or Searchable depending on what kind of matching you want to do on the value. Basically, as long as you aren't looking to do full-text search on a field, marking it as Indexed will be sufficient.
+     - In our model, the only field we'll mark as full-text searchable will be the StreetAddress field, we'll mark all the other fields as indexed. Keep in mind, that you do not actually have to mark fields as Indexed to store them, it's just that if you do not mark them as indexed, you will not be able to run searches on those fields.
 
    - **SearchableAttribute:**
      - Enables full-text search on a string field stored in Redis.
@@ -88,7 +95,6 @@ public class Address
    - Optional, but useful for giving the index a specific name.
    - Easily computable name if not set.
      
-
 
 This approach allows developers to define complex object models in .NET and seamlessly store them in Redis while providing querying capabilities through LINQ. The use of attributes such as `DocumentAttribute`, `RedisIdFieldAttribute`, `IndexedAttribute`, and `SearchableAttribute` enhances the flexibility and functionality of Redis OM in handling various types of data and queries.
 
