@@ -1,7 +1,7 @@
 # Redis
-https://www.youtube.com/watch?v=NXbOVLpage0
-https://www.youtube.com/watch?v=h30k7YixrMo
-https://www.youtube.com/watch?v=zlxdX9f4l50
+ - https://www.youtube.com/watch?v=NXbOVLpage0
+ - https://www.youtube.com/watch?v=h30k7YixrMo
+ - https://www.youtube.com/watch?v=zlxdX9f4l50
 * Scan vs Keys
 * Unlink vs del
 * Keyspace
