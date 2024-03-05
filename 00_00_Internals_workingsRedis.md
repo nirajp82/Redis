@@ -1,7 +1,8 @@
 https://betterprogramming.pub/internals-workings-of-redis-718f5871be84
 
-#An In-Depth Look Into the Internal Workings of Redis
-##How does this dictionary server perform with high throughput and low latency?
+# An In-Depth Look Into the Internal Workings of Redis
+
+## How does this dictionary server perform with high throughput and low latency?
 
 
 In this article, I’ll cover the following things to show the internal workings of Redis:
